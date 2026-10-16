@@ -16,7 +16,8 @@ from dataclasses import dataclass, field
 class Timing:
     """RULES.md §2.1 フェイズ、§2.2 回答フェイズ内のタイムライン。"""
 
-    input_seconds: float = 10.0              # 【確定】全員が入力したら即終了
+    input_seconds: float = 30.0              # 【確定 2026-10-16】全員が入力したら即終了
+    #   当初は10秒。「何を出題するか」を考えるのに足りないため30秒にした。
     prepare_budget_seconds: float = 5.0      # 【現行案】生成 + 事前チェック
     answer_seconds: float = 10.0             # 【確定】
     result_seconds: float = 5.0              # 【現行案】
