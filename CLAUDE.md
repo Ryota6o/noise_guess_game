@@ -57,8 +57,14 @@
 既存の conda env(`DiT`、`quantum`)は使わない。
 
 ```bash
+.venv/bin/python -m pytest tests/ -q                      # ルールと進行のテスト(GPU不要)
+.venv/bin/python -m uvicorn --app-dir server app:create_app --factory --port 8000
 .venv/bin/python experiments/e1_generation_speed/measure_speed.py --help
 ```
+
+サーバーは起動時に暖機する(初回の生成とVLM呼び出しが極端に遅いため)。
+ルールの判断は `server/rules.py` がすべて持ち、`server/app.py` は配信するだけ。
+**ルールを変えるときは RULES.md を先に直す**。
 
 モデルは `~/.cache/huggingface` に約20GB。`.venv` は `.gitignore` 済み。
 
@@ -148,7 +154,7 @@ web/            スマホUI(M5から)
 | M1 | 各ステップの x0 予測の保存と、類似度曲線の作成 | **完了**(2026-10-16。方式の否定という結論) |
 | M2 | 日本語3語の文20〜30で、主語/目的語の再現率と日本語直入力の可否を確認 | **E4完了・E2は人の判定待ち** |
 | M3 | 事前チェック(CLIP・動詞VLM)とダミー生成の実装 | **検証(E3・E5)とダミー生成は完了**(2026-10-16)。ターン処理への組み込みは未 |
-| M4 | ゲームサーバー(ロビー、入力、回答、得点、時刻同期) | 未着手 |
+| M4 | ゲームサーバー(ロビー、入力、回答、得点、時刻同期) | **完了**(2026-10-16)。3人がつないで1問遊べることをテストで確認 |
 | M5 | スマホUI(入力、フレーム表示、選択肢、ヒント) | 未着手 |
 | M6 | プレイテストと難易度調整 | 未着手 |
 
