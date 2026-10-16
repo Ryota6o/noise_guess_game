@@ -70,6 +70,7 @@ class TurnPreparer:
         self._pipe = None
         self._vlm = None
         self._picker: DummyPicker | None = None
+        self._translator = None
         # 日本語→英語の対応。**本来は LLM で訳す(計画書 §3.5)**。
         # ここは試作用の暫定で、プールにある語だけを引く。
         # プールにない語はそのまま渡すので、日本語が画像に描き込まれる失敗が起きうる。
@@ -119,6 +120,11 @@ class TurnPreparer:
         t0 = time.perf_counter()
         image = self.generate("a dog chasing a cat", 0)
         timings["generate"] = round(time.perf_counter() - t0, 3)
+        if self.use_vlm:
+            t0 = time.perf_counter()
+            self.translator.translate({"subject": "犬", "object": "猫",
+                                       "predicate": "追いかける"})
+            timings["translate"] = round(time.perf_counter() - t0, 3)
         t0 = time.perf_counter()
         self._clip_pick(image, ["a dog", "a cat"])
         timings["clip"] = round(time.perf_counter() - t0, 3)
@@ -128,7 +134,16 @@ class TurnPreparer:
             timings["vlm"] = round(time.perf_counter() - t0, 3)
         return timings
 
-    # ----- 翻訳(暫定) -----
+    @property
+    def translator(self):
+        """翻訳は VLM を画像なしで使い回す(計画書 §3.5)。VRAM の追加はゼロ。"""
+        if self._translator is None:
+            from translate import Translator
+            self.picker  # 控えの辞書を用意する
+            self._translator = Translator(self.vlm, fallback=self._ja_to_en)
+        return self._translator
+
+    # ----- 翻訳 -----
 
     def translate(self, slot: str, word_ja: str) -> tuple[str, bool]:
         """日本語の1語を英語にする。(訳, 訳せたか) を返す。
@@ -256,10 +271,17 @@ class TurnPreparer:
         t_start = time.perf_counter()
 
         for attempt in range(self.config.precheck.retry_limit + 1):
-            translated = {s: self.translate(s, w) for s, w in words_ja.items()}
-            words_en = {s: en for s, (en, _) in translated.items()}
-            untranslated = {s for s, (_, ok) in translated.items() if not ok}
-            prompt = self.build_prompt(words_en)
+            if self.use_vlm:
+                tr = self.translator.translate(words_ja)
+                words_en, prompt = tr.words_en, tr.sentence
+                untranslated = set(tr.failed_slots)
+                timings["translate"] = tr.seconds
+            else:
+                # VLM を使わない経路(テスト用)。辞書引きだけ。
+                pairs = {s: self.translate(s, w) for s, w in words_ja.items()}
+                words_en = {s: en for s, (en, _) in pairs.items()}
+                untranslated = {s for s, (_, ok) in pairs.items() if not ok}
+                prompt = self.build_prompt(words_en)
 
             t0 = time.perf_counter()
             image = self.generate(prompt, seed + attempt)
