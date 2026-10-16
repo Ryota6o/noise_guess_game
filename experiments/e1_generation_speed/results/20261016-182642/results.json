@@ -1,0 +1,374 @@
+{
+  "experiment": "E1-generation-speed",
+  "measured_at": "2026-10-16T18:30:52",
+  "model_id": "Tongyi-MAI/Z-Image-Turbo",
+  "dtype": "bfloat16",
+  "prompt": "A dog chases a cat",
+  "pipeline_load_s": 16.8,
+  "environment": {
+    "gpu": {
+      "device_name": "NVIDIA RTX 6000 Ada Generation",
+      "capability": "8.9",
+      "total_vram_mib": 48500,
+      "driver_version": "580.178.04",
+      "other_gpu_processes_at_start": [
+        "2483, /usr/libexec/gnome-remote-desktop-daemon, 432 MiB"
+      ],
+      "used_vram_mib_at_start": "1595"
+    },
+    "libraries": {
+      "python": "3.12.7",
+      "torch": "2.11.0+cu128",
+      "torch_cuda": "12.8",
+      "diffusers": "0.41.0.dev0",
+      "transformers": "5.20.0"
+    },
+    "host": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35"
+  },
+  "runs": [
+    {
+      "height": 512,
+      "width": 512,
+      "num_inference_steps": 8,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": false,
+      "wall_s": {
+        "median": 1.0755,
+        "mean": 1.0756,
+        "min": 1.067,
+        "max": 1.0839,
+        "all": [
+          1.067,
+          1.0682,
+          1.0755,
+          1.0835,
+          1.0839
+        ]
+      },
+      "nfe_per_image": 8.0,
+      "peak_vram_mib": 20363
+    },
+    {
+      "height": 640,
+      "width": 640,
+      "num_inference_steps": 8,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": false,
+      "wall_s": {
+        "median": 1.7996,
+        "mean": 1.7969,
+        "min": 1.7859,
+        "max": 1.8054,
+        "all": [
+          1.7859,
+          1.7928,
+          1.7996,
+          1.801,
+          1.8054
+        ]
+      },
+      "nfe_per_image": 8.0,
+      "peak_vram_mib": 20706
+    },
+    {
+      "height": 768,
+      "width": 768,
+      "num_inference_steps": 8,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": false,
+      "wall_s": {
+        "median": 2.4779,
+        "mean": 2.4798,
+        "min": 2.464,
+        "max": 2.4988,
+        "all": [
+          2.464,
+          2.4695,
+          2.4779,
+          2.4889,
+          2.4988
+        ]
+      },
+      "nfe_per_image": 8.0,
+      "peak_vram_mib": 21124
+    },
+    {
+      "height": 1024,
+      "width": 1024,
+      "num_inference_steps": 8,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": false,
+      "wall_s": {
+        "median": 4.6934,
+        "mean": 4.6966,
+        "min": 4.6422,
+        "max": 4.7509,
+        "all": [
+          4.6422,
+          4.6858,
+          4.6934,
+          4.7109,
+          4.7509
+        ]
+      },
+      "nfe_per_image": 8.0,
+      "peak_vram_mib": 22189
+    },
+    {
+      "height": 512,
+      "width": 512,
+      "num_inference_steps": 9,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": false,
+      "wall_s": {
+        "median": 1.3612,
+        "mean": 1.3616,
+        "min": 1.3583,
+        "max": 1.3664,
+        "all": [
+          1.3583,
+          1.3604,
+          1.3612,
+          1.3616,
+          1.3664
+        ]
+      },
+      "nfe_per_image": 9.0,
+      "peak_vram_mib": 20363
+    },
+    {
+      "height": 640,
+      "width": 640,
+      "num_inference_steps": 9,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": false,
+      "wall_s": {
+        "median": 2.2462,
+        "mean": 2.2456,
+        "min": 2.2405,
+        "max": 2.251,
+        "all": [
+          2.2405,
+          2.2418,
+          2.2462,
+          2.2484,
+          2.251
+        ]
+      },
+      "nfe_per_image": 9.0,
+      "peak_vram_mib": 20706
+    },
+    {
+      "height": 768,
+      "width": 768,
+      "num_inference_steps": 9,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": false,
+      "wall_s": {
+        "median": 3.0064,
+        "mean": 3.0074,
+        "min": 2.9917,
+        "max": 3.0285,
+        "all": [
+          2.9917,
+          3.0003,
+          3.0064,
+          3.0099,
+          3.0285
+        ]
+      },
+      "nfe_per_image": 9.0,
+      "peak_vram_mib": 21124
+    },
+    {
+      "height": 1024,
+      "width": 1024,
+      "num_inference_steps": 9,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": false,
+      "wall_s": {
+        "median": 5.5239,
+        "mean": 5.5193,
+        "min": 5.4861,
+        "max": 5.5442,
+        "all": [
+          5.4861,
+          5.5172,
+          5.5239,
+          5.5251,
+          5.5442
+        ]
+      },
+      "nfe_per_image": 9.0,
+      "peak_vram_mib": 22189
+    },
+    {
+      "height": 512,
+      "width": 512,
+      "num_inference_steps": 8,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": true,
+      "wall_s": {
+        "median": 1.2444,
+        "mean": 1.2457,
+        "min": 1.2434,
+        "max": 1.2486,
+        "all": [
+          1.2434,
+          1.244,
+          1.2444,
+          1.2483,
+          1.2486
+        ]
+      },
+      "nfe_per_image": 8.0,
+      "peak_vram_mib": 20363,
+      "stage_s_per_image": {
+        "text_encode": {
+          "total": 0.0433,
+          "calls": 1.0,
+          "per_call_mean": 0.0433
+        },
+        "denoise_step": {
+          "total": 1.149,
+          "calls": 8.0,
+          "per_call_mean": 0.1436
+        },
+        "vae_decode": {
+          "total": 0.0412,
+          "calls": 1.0,
+          "per_call_mean": 0.0412
+        }
+      }
+    },
+    {
+      "height": 640,
+      "width": 640,
+      "num_inference_steps": 8,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": true,
+      "wall_s": {
+        "median": 2.0201,
+        "mean": 2.0223,
+        "min": 2.0137,
+        "max": 2.037,
+        "all": [
+          2.0137,
+          2.0141,
+          2.0201,
+          2.0268,
+          2.037
+        ]
+      },
+      "nfe_per_image": 8.0,
+      "peak_vram_mib": 20706,
+      "stage_s_per_image": {
+        "text_encode": {
+          "total": 0.0412,
+          "calls": 1.0,
+          "per_call_mean": 0.0412
+        },
+        "denoise_step": {
+          "total": 1.8976,
+          "calls": 8.0,
+          "per_call_mean": 0.2372
+        },
+        "vae_decode": {
+          "total": 0.0685,
+          "calls": 1.0,
+          "per_call_mean": 0.0685
+        }
+      }
+    },
+    {
+      "height": 768,
+      "width": 768,
+      "num_inference_steps": 8,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": true,
+      "wall_s": {
+        "median": 2.6741,
+        "mean": 2.6796,
+        "min": 2.6675,
+        "max": 2.698,
+        "all": [
+          2.6675,
+          2.6694,
+          2.6741,
+          2.6889,
+          2.698
+        ]
+      },
+      "nfe_per_image": 8.0,
+      "peak_vram_mib": 21124,
+      "stage_s_per_image": {
+        "text_encode": {
+          "total": 0.0385,
+          "calls": 1.0,
+          "per_call_mean": 0.0385
+        },
+        "denoise_step": {
+          "total": 2.5266,
+          "calls": 8.0,
+          "per_call_mean": 0.3158
+        },
+        "vae_decode": {
+          "total": 0.0984,
+          "calls": 1.0,
+          "per_call_mean": 0.0984
+        }
+      }
+    },
+    {
+      "height": 1024,
+      "width": 1024,
+      "num_inference_steps": 8,
+      "repeats": 5,
+      "warmup": 2,
+      "breakdown_instrumented": true,
+      "wall_s": {
+        "median": 4.8695,
+        "mean": 4.8707,
+        "min": 4.8566,
+        "max": 4.8927,
+        "all": [
+          4.8566,
+          4.8632,
+          4.8695,
+          4.8715,
+          4.8927
+        ]
+      },
+      "nfe_per_image": 8.0,
+      "peak_vram_mib": 22189,
+      "stage_s_per_image": {
+        "text_encode": {
+          "total": 0.0376,
+          "calls": 1.0,
+          "per_call_mean": 0.0376
+        },
+        "denoise_step": {
+          "total": 4.6452,
+          "calls": 8.0,
+          "per_call_mean": 0.5806
+        },
+        "vae_decode": {
+          "total": 0.1683,
+          "calls": 1.0,
+          "per_call_mean": 0.1683
+        }
+      }
+    }
+  ]
+}
