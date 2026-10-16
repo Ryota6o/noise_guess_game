@@ -21,10 +21,13 @@ models/
 checkpoints/
 
 # 検証の生成物
-# experiments/ 配下のスクリプトと集計結果はコミットする。
-# 大量に出る生の生成画像・動画だけを除外する。
+# experiments/ 配下のスクリプトと集計結果(results.json, *.md, curves.png)はコミットする。
+# 大量に出る生の画像は、スクリプトで再生成できるので除外する。
+# 根拠として必要な接触シートだけ git add -f で個別に入れている。
 experiments/**/raw/
 experiments/**/out/
+experiments/**/frames/
+experiments/**/sheet_*.png
 *.mp4
 
 # Node(web/ を作ってから使う)
