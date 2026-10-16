@@ -100,8 +100,10 @@ async def play_one_turn(port: int, silent: set[str] = frozenset()) -> dict:
         if ready:
             first = sorted(ready)[0]
             msg = ready[first]
+            # 正解はクライアントに送られないので、FakeTurnPreparer の規則から復元する
+            # (ダミーは "<語>_ダミーN" という名前になっている)
             picks = {slot: next(o["ja"] for o in msg["choices"][slot]
-                                if o["role"] == "correct")
+                                if "_ダミー" not in o["ja"])
                      for slot in msg["answer_slots"]}
             await conns[first].send(json.dumps({"type": "answer", "picks": picks}))
 
@@ -154,3 +156,24 @@ def test_timed_out_player_is_not_sent_the_image_or_choices():
     assert "carol" in out["sat_out"], "時間切れの人に配信されてしまっている"
     assert "carol" not in out["ready"]
     assert set(out["ready"]) == {"alice", "bob"}       # 1人の時間切れではターンは成立する
+
+
+def test_the_answer_is_never_sent_to_the_client_before_the_result():
+    """選択肢に正解の印を混ぜない。
+
+    `role: "correct"` を送ると、開発者ツールを開くだけで答えが分かる。
+    早押しゲームなので、これは成立を壊す。
+    """
+    with ServerThread(TEST_CONFIG) as srv:
+        out = asyncio.run(play_one_turn(srv.port))
+
+    for name, msg in out["ready"].items():
+        blob = json.dumps(msg, ensure_ascii=False)
+        assert "correct" not in blob, f"{name} への配信に正解の印が混ざっている"
+        assert "role" not in blob and "sim" not in blob
+        for options in msg["choices"].values():
+            assert all(set(o) == {"ja"} for o in options), "表示に不要な情報が入っている"
+        # ヒントで伏せるのは誤答なので、先に渡してよい
+        for slot, hidden in msg["hint_hide"].items():
+            shown = {o["ja"] for o in msg["choices"][slot]}
+            assert set(hidden) <= shown and len(hidden) <= 1

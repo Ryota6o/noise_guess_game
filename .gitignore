@@ -39,3 +39,6 @@ dist/
 # OS / エディタ
 .DS_Store
 *.swp
+
+# UIの確認で撮るスクリーンショット(再生成できる)
+web/screenshots/

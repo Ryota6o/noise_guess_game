@@ -67,6 +67,8 @@ class Choices:
 
     options_per_slot: int = 4                # 【現行案】正解1 + 近い1 + 中くらい1 + 遠い1
     # 【現行案】難易度の主要なつまみ。experiments/m3_precheck/dummies.py と揃える。
+    # 【要検証】CLIP空間の近さは、絵としての紛らわしさと一致しない。
+    # 「猫」の近傍にロボットや車がネズミより上位で入る(2026-10-16)。E7 で見直す。
     near_band: tuple[float, float] = (0.00, 0.12)
     mid_band: tuple[float, float] = (0.40, 0.60)
     far_band: tuple[float, float] = (0.85, 1.00)

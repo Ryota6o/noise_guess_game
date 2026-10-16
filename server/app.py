@@ -26,6 +26,7 @@ from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi.responses import FileResponse
 
 sys.path.insert(0, str(Path(__file__).parent))
 
@@ -79,6 +80,24 @@ class Server:
         targets = [p for pid, p in room.players.items()
                    if only is None or pid in only]
         await asyncio.gather(*(self.send(p, payload) for p in targets))
+
+    @staticmethod
+    def public_choices(options: list[dict]) -> list[dict]:
+        """クライアントに送ってよい形にする。
+
+        **`role` や `en` を送ってはいけない。** `role: "correct"` が入っていると、
+        開発者ツールを開くだけで答えが分かる。表示に要るのは日本語の語だけ。
+        """
+        return [{"ja": o["ja"]} for o in options]
+
+    @staticmethod
+    def hint_targets(options: list[dict]) -> list[str]:
+        """5.5秒のヒントで伏せる語(RULES.md §4.5)。中くらいのダミーを1つ。
+
+        伏せる対象は**誤答**なので、先に知られても1択減るだけで答えは漏れない。
+        各端末がサーバー時刻に合わせて自分で伏せるため、先に渡しておく(§8)。
+        """
+        return [o["ja"] for o in options if o.get("role") == "mid"][:1]
 
     @staticmethod
     def now() -> float:
@@ -157,7 +176,10 @@ class Server:
                 "type": "answer_ready", "turn": turn.index,
                 "frames": assets.frames_jpeg_b64,
                 "frame_times": list(assets.frame_times),
-                "choices": {s: assets.choices[s] for s in turn.answerable_slots(pid)},
+                "choices": {s: self.public_choices(assets.choices[s])
+                            for s in turn.answerable_slots(pid)},
+                "hint_hide": {s: self.hint_targets(assets.choices[s])
+                              for s in turn.answerable_slots(pid)},
                 "answer_slots": turn.answerable_slots(pid),
                 "server_now": self.now(),
                 "answer_start_at": answer_start_at,
@@ -262,6 +284,12 @@ def create_app(preparer: Any | None = None, config: Config = DEFAULT) -> FastAPI
 
     app = FastAPI(title="Diffusion Quest", lifespan=lifespan)
     app.state.server = server
+
+    web_dir = Path(__file__).parents[1] / "web"
+
+    @app.get("/")
+    async def index() -> FileResponse:
+        return FileResponse(web_dir / "index.html")
 
     @app.websocket("/ws/{room_code}/{name}")
     async def ws_endpoint(ws: WebSocket, room_code: str, name: str) -> None:

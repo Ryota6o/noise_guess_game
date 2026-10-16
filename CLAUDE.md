@@ -60,7 +60,7 @@
 既存の conda env(`DiT`、`quantum`)は使わない。
 
 ```bash
-.venv/bin/python -m pytest tests/ -q                      # ルールと進行のテスト(GPU不要)
+.venv/bin/python -m pytest tests/ -q                      # ルール・進行・UI のテスト(GPU不要)
 .venv/bin/python -m uvicorn --app-dir server app:create_app --factory --port 8000
 .venv/bin/python experiments/e1_generation_speed/measure_speed.py --help
 ```
@@ -158,7 +158,7 @@ web/            スマホUI(M5から)
 | M2 | 日本語3語の文20〜30で、主語/目的語の再現率と日本語直入力の可否を確認 | **E4完了・E2は人の判定待ち** |
 | M3 | 事前チェック(CLIP・動詞VLM)とダミー生成の実装 | **検証(E3・E5)とダミー生成は完了**(2026-10-16)。ターン処理への組み込みは未 |
 | M4 | ゲームサーバー(ロビー、入力、回答、得点、時刻同期) | **完了**(2026-10-16)。3人がつないで1問遊べることをテストで確認 |
-| M5 | スマホUI(入力、フレーム表示、選択肢、ヒント) | 未着手 |
+| M5 | スマホUI(入力、フレーム表示、選択肢、ヒント) | **完了**(2026-10-16)。実機幅のブラウザ3枚で通し確認 |
 | M6 | プレイテストと難易度調整 | 未着手 |
 
 各段階は、前の段階の結果を見て次に進むかを判断する。日程は決めていない。
