@@ -1,0 +1,2140 @@
+{
+  "experiment": "E3-word-discriminability",
+  "measured_at": "2026-10-16T19:49:01",
+  "m2_run": "/home/ryotaro/games/diffusion_quest/experiments/m2_japanese_roles/results/20261016-190338",
+  "size": 512,
+  "records": [
+    {
+      "index": 0,
+      "ja_text": "犬が猫を追いかける",
+      "en_text": "a dog chasing a cat",
+      "subject_en": "a dog",
+      "object_en": "a cat",
+      "subject": {
+        "options": [
+          {
+            "ja": "犬",
+            "en": "a dog",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "男の子",
+            "en": "a boy",
+            "role": "near",
+            "sim": 0.917
+          },
+          {
+            "ja": "レスラー",
+            "en": "a wrestler",
+            "role": "far",
+            "sim": 0.8276
+          },
+          {
+            "ja": "サメ",
+            "en": "a shark",
+            "role": "mid",
+            "sim": 0.8775
+          }
+        ],
+        "four_choice_top1": "a dog",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0387,
+        "correct_score": 0.2227,
+        "full_pool_rank": 2,
+        "full_pool_top1": "a cat"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "車",
+            "en": "a car",
+            "role": "near",
+            "sim": 0.8953
+          },
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "ラーメン",
+            "en": "a bowl of ramen",
+            "role": "far",
+            "sim": 0.7231
+          },
+          {
+            "ja": "ボール",
+            "en": "a ball",
+            "role": "mid",
+            "sim": 0.848
+          }
+        ],
+        "four_choice_top1": "a cat",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0128,
+        "correct_score": 0.2312,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a cat"
+      }
+    },
+    {
+      "index": 1,
+      "ja_text": "猫がネズミを追いかける",
+      "en_text": "a cat chasing a mouse",
+      "subject_en": "a cat",
+      "object_en": "a mouse",
+      "subject": {
+        "options": [
+          {
+            "ja": "医者",
+            "en": "a doctor",
+            "role": "mid",
+            "sim": 0.8701
+          },
+          {
+            "ja": "消防士",
+            "en": "a firefighter",
+            "role": "far",
+            "sim": 0.8063
+          },
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "ウシ",
+            "en": "a cow",
+            "role": "near",
+            "sim": 0.902
+          }
+        ],
+        "four_choice_top1": "a cat",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0451,
+        "correct_score": 0.2501,
+        "full_pool_rank": 2,
+        "full_pool_top1": "a mouse"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "車",
+            "en": "a car",
+            "role": "near",
+            "sim": 0.8659
+          },
+          {
+            "ja": "鍋",
+            "en": "a cooking pot",
+            "role": "far",
+            "sim": 0.7759
+          },
+          {
+            "ja": "ネズミ",
+            "en": "a mouse",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "ドア",
+            "en": "a door",
+            "role": "mid",
+            "sim": 0.82
+          }
+        ],
+        "four_choice_top1": "a mouse",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0817,
+        "correct_score": 0.2722,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a mouse"
+      }
+    },
+    {
+      "index": 2,
+      "ja_text": "警察官が泥棒を捕まえる",
+      "en_text": "a police officer catching a thief",
+      "subject_en": "a police officer",
+      "object_en": "a thief",
+      "subject": {
+        "options": [
+          {
+            "ja": "警察官",
+            "en": "a police officer",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "ペンギン",
+            "en": "a penguin",
+            "role": "far",
+            "sim": 0.7863
+          },
+          {
+            "ja": "医者",
+            "en": "a doctor",
+            "role": "near",
+            "sim": 0.8683
+          },
+          {
+            "ja": "宇宙飛行士",
+            "en": "an astronaut",
+            "role": "mid",
+            "sim": 0.82
+          }
+        ],
+        "four_choice_top1": "a police officer",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.1105,
+        "correct_score": 0.2974,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a police officer"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "泥棒",
+            "en": "a thief",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "花",
+            "en": "a flower",
+            "role": "mid",
+            "sim": 0.8271
+          },
+          {
+            "ja": "はちみつ",
+            "en": "honey",
+            "role": "near",
+            "sim": 0.8682
+          },
+          {
+            "ja": "アイスクリーム",
+            "en": "an ice cream cone",
+            "role": "far",
+            "sim": 0.7658
+          }
+        ],
+        "four_choice_top1": "a thief",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0196,
+        "correct_score": 0.2051,
+        "full_pool_rank": 3,
+        "full_pool_top1": "a referee"
+      }
+    },
+    {
+      "index": 3,
+      "ja_text": "女の子が犬を抱きしめる",
+      "en_text": "a girl hugging a dog",
+      "subject_en": "a girl",
+      "object_en": "a dog",
+      "subject": {
+        "options": [
+          {
+            "ja": "カメ",
+            "en": "a turtle",
+            "role": "far",
+            "sim": 0.8213
+          },
+          {
+            "ja": "男の子",
+            "en": "a boy",
+            "role": "near",
+            "sim": 0.9424
+          },
+          {
+            "ja": "ネズミ",
+            "en": "a mouse",
+            "role": "mid",
+            "sim": 0.857
+          },
+          {
+            "ja": "女の子",
+            "en": "a girl",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a girl",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0093,
+        "correct_score": 0.2281,
+        "full_pool_rank": 9,
+        "full_pool_top1": "a dog"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "ラーメン",
+            "en": "a bowl of ramen",
+            "role": "far",
+            "sim": 0.7144
+          },
+          {
+            "ja": "赤ちゃん",
+            "en": "a baby",
+            "role": "near",
+            "sim": 0.8897
+          },
+          {
+            "ja": "犬",
+            "en": "a dog",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "はちみつ",
+            "en": "honey",
+            "role": "mid",
+            "sim": 0.8607
+          }
+        ],
+        "four_choice_top1": "a dog",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0028,
+        "correct_score": 0.2589,
+        "full_pool_rank": 2,
+        "full_pool_top1": "a teddy bear"
+      }
+    },
+    {
+      "index": 4,
+      "ja_text": "男性が犬を洗う",
+      "en_text": "a man washing a dog",
+      "subject_en": "a man",
+      "object_en": "a dog",
+      "subject": {
+        "options": [
+          {
+            "ja": "農家の人",
+            "en": "a farmer",
+            "role": "mid",
+            "sim": 0.8645
+          },
+          {
+            "ja": "ゾウ",
+            "en": "an elephant",
+            "role": "far",
+            "sim": 0.8114
+          },
+          {
+            "ja": "男性",
+            "en": "a man",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "女性",
+            "en": "a woman",
+            "role": "near",
+            "sim": 0.9454
+          }
+        ],
+        "four_choice_top1": "a farmer",
+        "four_choice_correct": false,
+        "four_choice_margin": 0.0016,
+        "correct_score": 0.1856,
+        "full_pool_rank": 20,
+        "full_pool_top1": "a dog"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "はちみつ",
+            "en": "honey",
+            "role": "mid",
+            "sim": 0.8607
+          },
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "near",
+            "sim": 0.9361
+          },
+          {
+            "ja": "犬",
+            "en": "a dog",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "積み木",
+            "en": "wooden blocks",
+            "role": "far",
+            "sim": 0.7564
+          }
+        ],
+        "four_choice_top1": "a dog",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0465,
+        "correct_score": 0.2309,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a dog"
+      }
+    },
+    {
+      "index": 5,
+      "ja_text": "鳥が魚をつかむ",
+      "en_text": "a bird grabbing a fish",
+      "subject_en": "a bird",
+      "object_en": "a fish",
+      "subject": {
+        "options": [
+          {
+            "ja": "ウサギ",
+            "en": "a rabbit",
+            "role": "near",
+            "sim": 0.8994
+          },
+          {
+            "ja": "鳥",
+            "en": "a bird",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "警察官",
+            "en": "a police officer",
+            "role": "far",
+            "sim": 0.818
+          },
+          {
+            "ja": "おじいさん",
+            "en": "an old man",
+            "role": "mid",
+            "sim": 0.8679
+          }
+        ],
+        "four_choice_top1": "a bird",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0538,
+        "correct_score": 0.243,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a bird"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "ぬいぐるみ",
+            "en": "a teddy bear",
+            "role": "mid",
+            "sim": 0.8489
+          },
+          {
+            "ja": "ネズミ",
+            "en": "a mouse",
+            "role": "near",
+            "sim": 0.8839
+          },
+          {
+            "ja": "魚",
+            "en": "a fish",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "箸",
+            "en": "chopsticks",
+            "role": "far",
+            "sim": 0.794
+          }
+        ],
+        "four_choice_top1": "a fish",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0121,
+        "correct_score": 0.2235,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a fish"
+      }
+    },
+    {
+      "index": 6,
+      "ja_text": "農家の人が牛を引っぱる",
+      "en_text": "a farmer pulling a cow",
+      "subject_en": "a farmer",
+      "object_en": "a cow",
+      "subject": {
+        "options": [
+          {
+            "ja": "医者",
+            "en": "a doctor",
+            "role": "near",
+            "sim": 0.8766
+          },
+          {
+            "ja": "キツネ",
+            "en": "a fox",
+            "role": "far",
+            "sim": 0.7956
+          },
+          {
+            "ja": "農家の人",
+            "en": "a farmer",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "レスラー",
+            "en": "a wrestler",
+            "role": "mid",
+            "sim": 0.8354
+          }
+        ],
+        "four_choice_top1": "a farmer",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.089,
+        "correct_score": 0.2781,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a farmer"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "near",
+            "sim": 0.902
+          },
+          {
+            "ja": "靴",
+            "en": "a shoe",
+            "role": "mid",
+            "sim": 0.8321
+          },
+          {
+            "ja": "牛",
+            "en": "a cow",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "箸",
+            "en": "chopsticks",
+            "role": "far",
+            "sim": 0.759
+          }
+        ],
+        "four_choice_top1": "a cow",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0826,
+        "correct_score": 0.2578,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a cow"
+      }
+    },
+    {
+      "index": 7,
+      "ja_text": "子どもがロボットを押す",
+      "en_text": "a child pushing a robot",
+      "subject_en": "a child",
+      "object_en": "a robot",
+      "subject": {
+        "options": [
+          {
+            "ja": "消防士",
+            "en": "a firefighter",
+            "role": "far",
+            "sim": 0.8266
+          },
+          {
+            "ja": "女の子",
+            "en": "a girl",
+            "role": "near",
+            "sim": 0.9405
+          },
+          {
+            "ja": "ウサギ",
+            "en": "a rabbit",
+            "role": "mid",
+            "sim": 0.8804
+          },
+          {
+            "ja": "子ども",
+            "en": "a child",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a child",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0222,
+        "correct_score": 0.2083,
+        "full_pool_rank": 3,
+        "full_pool_top1": "a robot"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "椅子",
+            "en": "a chair",
+            "role": "mid",
+            "sim": 0.8489
+          },
+          {
+            "ja": "植木",
+            "en": "a potted plant",
+            "role": "far",
+            "sim": 0.7854
+          },
+          {
+            "ja": "ロボット",
+            "en": "a robot",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "本",
+            "en": "a book",
+            "role": "near",
+            "sim": 0.8821
+          }
+        ],
+        "four_choice_top1": "a robot",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0847,
+        "correct_score": 0.2597,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a robot"
+      }
+    },
+    {
+      "index": 8,
+      "ja_text": "猿が赤ちゃんを見つめる",
+      "en_text": "a monkey staring at a baby",
+      "subject_en": "a monkey",
+      "object_en": "a baby",
+      "subject": {
+        "options": [
+          {
+            "ja": "猿",
+            "en": "a monkey",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "near",
+            "sim": 0.876
+          },
+          {
+            "ja": "おじいさん",
+            "en": "an old man",
+            "role": "mid",
+            "sim": 0.8437
+          },
+          {
+            "ja": "力士",
+            "en": "a sumo wrestler",
+            "role": "far",
+            "sim": 0.7485
+          }
+        ],
+        "four_choice_top1": "a monkey",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0767,
+        "correct_score": 0.2694,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a monkey"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "赤ちゃん",
+            "en": "a baby",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "ぬいぐるみ",
+            "en": "a teddy bear",
+            "role": "near",
+            "sim": 0.9048
+          },
+          {
+            "ja": "帽子",
+            "en": "a hat",
+            "role": "mid",
+            "sim": 0.8296
+          },
+          {
+            "ja": "箸",
+            "en": "chopsticks",
+            "role": "far",
+            "sim": 0.7708
+          }
+        ],
+        "four_choice_top1": "a baby",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0226,
+        "correct_score": 0.2056,
+        "full_pool_rank": 4,
+        "full_pool_top1": "a banana"
+      }
+    },
+    {
+      "index": 9,
+      "ja_text": "力士がレスラーを投げる",
+      "en_text": "a sumo wrestler throwing a wrestler",
+      "subject_en": "a sumo wrestler",
+      "object_en": "a wrestler",
+      "subject": {
+        "options": [
+          {
+            "ja": "侍",
+            "en": "a samurai",
+            "role": "near",
+            "sim": 0.7909
+          },
+          {
+            "ja": "歌手",
+            "en": "a singer",
+            "role": "far",
+            "sim": 0.722
+          },
+          {
+            "ja": "力士",
+            "en": "a sumo wrestler",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "おばあさん",
+            "en": "an old woman",
+            "role": "mid",
+            "sim": 0.7427
+          }
+        ],
+        "four_choice_top1": "a sumo wrestler",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0922,
+        "correct_score": 0.3136,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a sumo wrestler"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "老人",
+            "en": "an elderly man",
+            "role": "near",
+            "sim": 0.8296
+          },
+          {
+            "ja": "コップ",
+            "en": "a cup",
+            "role": "mid",
+            "sim": 0.797
+          },
+          {
+            "ja": "レスラー",
+            "en": "a wrestler",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "積み木",
+            "en": "wooden blocks",
+            "role": "far",
+            "sim": 0.7158
+          }
+        ],
+        "four_choice_top1": "a wrestler",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0791,
+        "correct_score": 0.2702,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a wrestler"
+      }
+    },
+    {
+      "index": 10,
+      "ja_text": "看護師が老人を支える",
+      "en_text": "a nurse supporting an elderly man",
+      "subject_en": "a nurse",
+      "object_en": "an elderly man",
+      "subject": {
+        "options": [
+          {
+            "ja": "先生",
+            "en": "a teacher",
+            "role": "near",
+            "sim": 0.8924
+          },
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "mid",
+            "sim": 0.8404
+          },
+          {
+            "ja": "侍",
+            "en": "a samurai",
+            "role": "far",
+            "sim": 0.7969
+          },
+          {
+            "ja": "看護師",
+            "en": "a nurse",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a nurse",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0559,
+        "correct_score": 0.2427,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a nurse"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "石",
+            "en": "a rock",
+            "role": "mid",
+            "sim": 0.8126
+          },
+          {
+            "ja": "手紙",
+            "en": "a letter",
+            "role": "near",
+            "sim": 0.842
+          },
+          {
+            "ja": "老人",
+            "en": "an elderly man",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "アイスクリーム",
+            "en": "an ice cream cone",
+            "role": "far",
+            "sim": 0.7599
+          }
+        ],
+        "four_choice_top1": "an elderly man",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0332,
+        "correct_score": 0.2319,
+        "full_pool_rank": 1,
+        "full_pool_top1": "an elderly man"
+      }
+    },
+    {
+      "index": 11,
+      "ja_text": "サッカー選手が審判を蹴る",
+      "en_text": "a soccer player kicking a referee",
+      "subject_en": "a soccer player",
+      "object_en": "a referee",
+      "subject": {
+        "options": [
+          {
+            "ja": "侍",
+            "en": "a samurai",
+            "role": "far",
+            "sim": 0.7854
+          },
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "mid",
+            "sim": 0.8253
+          },
+          {
+            "ja": "サッカー選手",
+            "en": "a soccer player",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "学生",
+            "en": "a student",
+            "role": "near",
+            "sim": 0.8626
+          }
+        ],
+        "four_choice_top1": "a soccer player",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0643,
+        "correct_score": 0.243,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a soccer player"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "鍋",
+            "en": "a cooking pot",
+            "role": "far",
+            "sim": 0.7461
+          },
+          {
+            "ja": "老人",
+            "en": "an elderly man",
+            "role": "near",
+            "sim": 0.8251
+          },
+          {
+            "ja": "ギター",
+            "en": "a guitar",
+            "role": "mid",
+            "sim": 0.7818
+          },
+          {
+            "ja": "審判",
+            "en": "a referee",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a referee",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0772,
+        "correct_score": 0.253,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a referee"
+      }
+    },
+    {
+      "index": 12,
+      "ja_text": "男の子がりんごを食べる",
+      "en_text": "a boy eating an apple",
+      "subject_en": "a boy",
+      "object_en": "an apple",
+      "subject": {
+        "options": [
+          {
+            "ja": "おじいさん",
+            "en": "an old man",
+            "role": "near",
+            "sim": 0.9131
+          },
+          {
+            "ja": "ブタ",
+            "en": "a pig",
+            "role": "mid",
+            "sim": 0.8731
+          },
+          {
+            "ja": "侍",
+            "en": "a samurai",
+            "role": "far",
+            "sim": 0.8056
+          },
+          {
+            "ja": "男の子",
+            "en": "a boy",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a boy",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0047,
+        "correct_score": 0.2157,
+        "full_pool_rank": 6,
+        "full_pool_top1": "a child"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "風船",
+            "en": "a balloon",
+            "role": "near",
+            "sim": 0.856
+          },
+          {
+            "ja": "カバン",
+            "en": "a bag",
+            "role": "mid",
+            "sim": 0.8316
+          },
+          {
+            "ja": "りんご",
+            "en": "an apple",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "寿司",
+            "en": "sushi",
+            "role": "far",
+            "sim": 0.7591
+          }
+        ],
+        "four_choice_top1": "an apple",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0537,
+        "correct_score": 0.2639,
+        "full_pool_rank": 1,
+        "full_pool_top1": "an apple"
+      }
+    },
+    {
+      "index": 13,
+      "ja_text": "猫がコップを倒す",
+      "en_text": "a cat knocking over a cup",
+      "subject_en": "a cat",
+      "object_en": "a cup",
+      "subject": {
+        "options": [
+          {
+            "ja": "画家",
+            "en": "a painter",
+            "role": "far",
+            "sim": 0.8249
+          },
+          {
+            "ja": "ウシ",
+            "en": "a cow",
+            "role": "near",
+            "sim": 0.902
+          },
+          {
+            "ja": "泥棒",
+            "en": "a thief",
+            "role": "mid",
+            "sim": 0.8603
+          },
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a cat",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0283,
+        "correct_score": 0.2418,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a cat"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "本",
+            "en": "a book",
+            "role": "near",
+            "sim": 0.8758
+          },
+          {
+            "ja": "コップ",
+            "en": "a cup",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "鍋",
+            "en": "a cooking pot",
+            "role": "mid",
+            "sim": 0.845
+          },
+          {
+            "ja": "寿司",
+            "en": "sushi",
+            "role": "far",
+            "sim": 0.7692
+          }
+        ],
+        "four_choice_top1": "a cup",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0461,
+        "correct_score": 0.2594,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a cup"
+      }
+    },
+    {
+      "index": 14,
+      "ja_text": "女性が本を読む",
+      "en_text": "a woman reading a book",
+      "subject_en": "a woman",
+      "object_en": "a book",
+      "subject": {
+        "options": [
+          {
+            "ja": "女性",
+            "en": "a woman",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "おじいさん",
+            "en": "an old man",
+            "role": "mid",
+            "sim": 0.8707
+          },
+          {
+            "ja": "キツネ",
+            "en": "a fox",
+            "role": "far",
+            "sim": 0.805
+          },
+          {
+            "ja": "赤ちゃん",
+            "en": "a baby",
+            "role": "near",
+            "sim": 0.925
+          }
+        ],
+        "four_choice_top1": "a woman",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.023,
+        "correct_score": 0.2151,
+        "full_pool_rank": 4,
+        "full_pool_top1": "a student"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "橋",
+            "en": "a bridge",
+            "role": "mid",
+            "sim": 0.8417
+          },
+          {
+            "ja": "ラーメン",
+            "en": "a bowl of ramen",
+            "role": "far",
+            "sim": 0.7417
+          },
+          {
+            "ja": "本",
+            "en": "a book",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "手紙",
+            "en": "a letter",
+            "role": "near",
+            "sim": 0.8961
+          }
+        ],
+        "four_choice_top1": "a book",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0118,
+        "correct_score": 0.2531,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a book"
+      }
+    },
+    {
+      "index": 15,
+      "ja_text": "象が丸太を運ぶ",
+      "en_text": "an elephant carrying a log",
+      "subject_en": "an elephant",
+      "object_en": "a log",
+      "subject": {
+        "options": [
+          {
+            "ja": "象",
+            "en": "an elephant",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "画家",
+            "en": "a painter",
+            "role": "far",
+            "sim": 0.7764
+          },
+          {
+            "ja": "サル",
+            "en": "a monkey",
+            "role": "near",
+            "sim": 0.8724
+          },
+          {
+            "ja": "先生",
+            "en": "a teacher",
+            "role": "mid",
+            "sim": 0.8068
+          }
+        ],
+        "four_choice_top1": "an elephant",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0804,
+        "correct_score": 0.2948,
+        "full_pool_rank": 1,
+        "full_pool_top1": "an elephant"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "木",
+            "en": "a tree",
+            "role": "near",
+            "sim": 0.8382
+          },
+          {
+            "ja": "丸太",
+            "en": "a log",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "新聞",
+            "en": "a newspaper",
+            "role": "mid",
+            "sim": 0.7995
+          },
+          {
+            "ja": "積み木",
+            "en": "wooden blocks",
+            "role": "far",
+            "sim": 0.7681
+          }
+        ],
+        "four_choice_top1": "a log",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0003,
+        "correct_score": 0.2346,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a log"
+      }
+    },
+    {
+      "index": 16,
+      "ja_text": "ロボットが植木を運ぶ",
+      "en_text": "a robot carrying a potted plant",
+      "subject_en": "a robot",
+      "object_en": "a potted plant",
+      "subject": {
+        "options": [
+          {
+            "ja": "先生",
+            "en": "a teacher",
+            "role": "mid",
+            "sim": 0.8694
+          },
+          {
+            "ja": "ペンギン",
+            "en": "a penguin",
+            "role": "far",
+            "sim": 0.8276
+          },
+          {
+            "ja": "ロボット",
+            "en": "a robot",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "near",
+            "sim": 0.8967
+          }
+        ],
+        "four_choice_top1": "a robot",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0606,
+        "correct_score": 0.2593,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a robot"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "木",
+            "en": "a tree",
+            "role": "near",
+            "sim": 0.8144
+          },
+          {
+            "ja": "植木",
+            "en": "a potted plant",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "積み木",
+            "en": "wooden blocks",
+            "role": "far",
+            "sim": 0.7029
+          },
+          {
+            "ja": "老人",
+            "en": "an elderly man",
+            "role": "mid",
+            "sim": 0.7563
+          }
+        ],
+        "four_choice_top1": "a potted plant",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0508,
+        "correct_score": 0.2561,
+        "full_pool_rank": 2,
+        "full_pool_top1": "a robot"
+      }
+    },
+    {
+      "index": 17,
+      "ja_text": "料理人がラーメンを作る",
+      "en_text": "a chef cooking a bowl of ramen",
+      "subject_en": "a chef",
+      "object_en": "a bowl of ramen",
+      "subject": {
+        "options": [
+          {
+            "ja": "子ども",
+            "en": "a child",
+            "role": "near",
+            "sim": 0.8862
+          },
+          {
+            "ja": "トリ",
+            "en": "a bird",
+            "role": "mid",
+            "sim": 0.8369
+          },
+          {
+            "ja": "タコ",
+            "en": "an octopus",
+            "role": "far",
+            "sim": 0.7549
+          },
+          {
+            "ja": "料理人",
+            "en": "a chef",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a chef",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0749,
+        "correct_score": 0.2557,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a chef"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "カメラ",
+            "en": "a camera",
+            "role": "mid",
+            "sim": 0.7143
+          },
+          {
+            "ja": "レスラー",
+            "en": "a wrestler",
+            "role": "far",
+            "sim": 0.6843
+          },
+          {
+            "ja": "ラーメン",
+            "en": "a bowl of ramen",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "ケーキ",
+            "en": "a cake",
+            "role": "near",
+            "sim": 0.7471
+          }
+        ],
+        "four_choice_top1": "a bowl of ramen",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.1023,
+        "correct_score": 0.2783,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a bowl of ramen"
+      }
+    },
+    {
+      "index": 18,
+      "ja_text": "熊がはちみつをなめる",
+      "en_text": "a bear licking honey",
+      "subject_en": "a bear",
+      "object_en": "honey",
+      "subject": {
+        "options": [
+          {
+            "ja": "タコ",
+            "en": "an octopus",
+            "role": "far",
+            "sim": 0.7948
+          },
+          {
+            "ja": "宇宙飛行士",
+            "en": "an astronaut",
+            "role": "mid",
+            "sim": 0.8395
+          },
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "near",
+            "sim": 0.8969
+          },
+          {
+            "ja": "熊",
+            "en": "a bear",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a bear",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.1013,
+        "correct_score": 0.2885,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a bear"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "パン",
+            "en": "a loaf of bread",
+            "role": "mid",
+            "sim": 0.8239
+          },
+          {
+            "ja": "本",
+            "en": "a book",
+            "role": "near",
+            "sim": 0.854
+          },
+          {
+            "ja": "はちみつ",
+            "en": "honey",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "丸太",
+            "en": "a log",
+            "role": "far",
+            "sim": 0.7763
+          }
+        ],
+        "four_choice_top1": "honey",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0054,
+        "correct_score": 0.2185,
+        "full_pool_rank": 2,
+        "full_pool_top1": "a teddy bear"
+      }
+    },
+    {
+      "index": 19,
+      "ja_text": "消防士がはしごを登る",
+      "en_text": "a firefighter climbing a ladder",
+      "subject_en": "a firefighter",
+      "object_en": "a ladder",
+      "subject": {
+        "options": [
+          {
+            "ja": "忍者",
+            "en": "a ninja",
+            "role": "mid",
+            "sim": 0.8069
+          },
+          {
+            "ja": "農家の人",
+            "en": "a farmer",
+            "role": "near",
+            "sim": 0.8621
+          },
+          {
+            "ja": "力士",
+            "en": "a sumo wrestler",
+            "role": "far",
+            "sim": 0.7274
+          },
+          {
+            "ja": "消防士",
+            "en": "a firefighter",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a firefighter",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0896,
+        "correct_score": 0.2915,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a firefighter"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "新聞",
+            "en": "a newspaper",
+            "role": "mid",
+            "sim": 0.8039
+          },
+          {
+            "ja": "ラーメン",
+            "en": "a bowl of ramen",
+            "role": "far",
+            "sim": 0.6985
+          },
+          {
+            "ja": "刀",
+            "en": "a sword",
+            "role": "near",
+            "sim": 0.8398
+          },
+          {
+            "ja": "はしご",
+            "en": "a ladder",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a ladder",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0766,
+        "correct_score": 0.2571,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a ladder"
+      }
+    },
+    {
+      "index": 20,
+      "ja_text": "赤ちゃんが積み木を積む",
+      "en_text": "a baby stacking wooden blocks",
+      "subject_en": "a baby",
+      "object_en": "wooden blocks",
+      "subject": {
+        "options": [
+          {
+            "ja": "ゾウ",
+            "en": "an elephant",
+            "role": "far",
+            "sim": 0.7949
+          },
+          {
+            "ja": "カエル",
+            "en": "a frog",
+            "role": "mid",
+            "sim": 0.8573
+          },
+          {
+            "ja": "女の子",
+            "en": "a girl",
+            "role": "near",
+            "sim": 0.9095
+          },
+          {
+            "ja": "赤ちゃん",
+            "en": "a baby",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "an elephant",
+        "four_choice_correct": false,
+        "four_choice_margin": 0.0069,
+        "correct_score": 0.1635,
+        "full_pool_rank": 46,
+        "full_pool_top1": "a teacher"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "手紙",
+            "en": "a letter",
+            "role": "near",
+            "sim": 0.7842
+          },
+          {
+            "ja": "アイスクリーム",
+            "en": "an ice cream cone",
+            "role": "far",
+            "sim": 0.7003
+          },
+          {
+            "ja": "車",
+            "en": "a car",
+            "role": "mid",
+            "sim": 0.7511
+          },
+          {
+            "ja": "積み木",
+            "en": "wooden blocks",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "wooden blocks",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.1225,
+        "correct_score": 0.3297,
+        "full_pool_rank": 1,
+        "full_pool_top1": "wooden blocks"
+      }
+    },
+    {
+      "index": 21,
+      "ja_text": "侍が刀を抜く",
+      "en_text": "a samurai drawing a sword",
+      "subject_en": "a samurai",
+      "object_en": "a sword",
+      "subject": {
+        "options": [
+          {
+            "ja": "レスラー",
+            "en": "a wrestler",
+            "role": "far",
+            "sim": 0.7736
+          },
+          {
+            "ja": "ウサギ",
+            "en": "a rabbit",
+            "role": "mid",
+            "sim": 0.7924
+          },
+          {
+            "ja": "侍",
+            "en": "a samurai",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "魔女",
+            "en": "a witch",
+            "role": "near",
+            "sim": 0.8138
+          }
+        ],
+        "four_choice_top1": "a samurai",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.1034,
+        "correct_score": 0.3227,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a samurai"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "鍋",
+            "en": "a cooking pot",
+            "role": "far",
+            "sim": 0.7911
+          },
+          {
+            "ja": "カバン",
+            "en": "a bag",
+            "role": "mid",
+            "sim": 0.8341
+          },
+          {
+            "ja": "魚",
+            "en": "a fish",
+            "role": "near",
+            "sim": 0.8698
+          },
+          {
+            "ja": "刀",
+            "en": "a sword",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a sword",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0383,
+        "correct_score": 0.2507,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a sword"
+      }
+    },
+    {
+      "index": 22,
+      "ja_text": "おばあさんが傘をさす",
+      "en_text": "an old woman holding up an umbrella",
+      "subject_en": "an old woman",
+      "object_en": "an umbrella",
+      "subject": {
+        "options": [
+          {
+            "ja": "ウシ",
+            "en": "a cow",
+            "role": "mid",
+            "sim": 0.8406
+          },
+          {
+            "ja": "おじいさん",
+            "en": "an old man",
+            "role": "near",
+            "sim": 0.9419
+          },
+          {
+            "ja": "おばあさん",
+            "en": "an old woman",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "キツネ",
+            "en": "a fox",
+            "role": "far",
+            "sim": 0.7898
+          }
+        ],
+        "four_choice_top1": "an old woman",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0541,
+        "correct_score": 0.2764,
+        "full_pool_rank": 1,
+        "full_pool_top1": "an old woman"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "橋",
+            "en": "a bridge",
+            "role": "mid",
+            "sim": 0.7741
+          },
+          {
+            "ja": "刀",
+            "en": "a sword",
+            "role": "near",
+            "sim": 0.8149
+          },
+          {
+            "ja": "植木",
+            "en": "a potted plant",
+            "role": "far",
+            "sim": 0.7087
+          },
+          {
+            "ja": "傘",
+            "en": "an umbrella",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "an umbrella",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0823,
+        "correct_score": 0.2713,
+        "full_pool_rank": 1,
+        "full_pool_top1": "an umbrella"
+      }
+    },
+    {
+      "index": 23,
+      "ja_text": "学生が自転車を押す",
+      "en_text": "a student pushing a bicycle",
+      "subject_en": "a student",
+      "object_en": "a bicycle",
+      "subject": {
+        "options": [
+          {
+            "ja": "学生",
+            "en": "a student",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "カメ",
+            "en": "a turtle",
+            "role": "far",
+            "sim": 0.8158
+          },
+          {
+            "ja": "おじいさん",
+            "en": "an old man",
+            "role": "mid",
+            "sim": 0.8616
+          },
+          {
+            "ja": "先生",
+            "en": "a teacher",
+            "role": "near",
+            "sim": 0.9323
+          }
+        ],
+        "four_choice_top1": "a student",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0405,
+        "correct_score": 0.2499,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a student"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "寿司",
+            "en": "sushi",
+            "role": "far",
+            "sim": 0.7284
+          },
+          {
+            "ja": "猫",
+            "en": "a cat",
+            "role": "near",
+            "sim": 0.8495
+          },
+          {
+            "ja": "ボール",
+            "en": "a ball",
+            "role": "mid",
+            "sim": 0.8217
+          },
+          {
+            "ja": "自転車",
+            "en": "a bicycle",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a bicycle",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0846,
+        "correct_score": 0.2826,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a bicycle"
+      }
+    },
+    {
+      "index": 24,
+      "ja_text": "男性が橋を渡る",
+      "en_text": "a man crossing a bridge",
+      "subject_en": "a man",
+      "object_en": "a bridge",
+      "subject": {
+        "options": [
+          {
+            "ja": "ウサギ",
+            "en": "a rabbit",
+            "role": "mid",
+            "sim": 0.8596
+          },
+          {
+            "ja": "ペンギン",
+            "en": "a penguin",
+            "role": "far",
+            "sim": 0.7886
+          },
+          {
+            "ja": "男性",
+            "en": "a man",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "赤ちゃん",
+            "en": "a baby",
+            "role": "near",
+            "sim": 0.9179
+          }
+        ],
+        "four_choice_top1": "a man",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0304,
+        "correct_score": 0.2057,
+        "full_pool_rank": 2,
+        "full_pool_top1": "a student"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "りんご",
+            "en": "an apple",
+            "role": "mid",
+            "sim": 0.8097
+          },
+          {
+            "ja": "審判",
+            "en": "a referee",
+            "role": "far",
+            "sim": 0.7732
+          },
+          {
+            "ja": "橋",
+            "en": "a bridge",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "本",
+            "en": "a book",
+            "role": "near",
+            "sim": 0.8417
+          }
+        ],
+        "four_choice_top1": "a bridge",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0462,
+        "correct_score": 0.242,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a bridge"
+      }
+    },
+    {
+      "index": 25,
+      "ja_text": "女性が箸を持つ",
+      "en_text": "a woman holding chopsticks",
+      "subject_en": "a woman",
+      "object_en": "chopsticks",
+      "subject": {
+        "options": [
+          {
+            "ja": "ライオン",
+            "en": "a lion",
+            "role": "mid",
+            "sim": 0.8552
+          },
+          {
+            "ja": "ペンギン",
+            "en": "a penguin",
+            "role": "far",
+            "sim": 0.7782
+          },
+          {
+            "ja": "子ども",
+            "en": "a child",
+            "role": "near",
+            "sim": 0.9246
+          },
+          {
+            "ja": "女性",
+            "en": "a woman",
+            "role": "correct",
+            "sim": 1.0
+          }
+        ],
+        "four_choice_top1": "a woman",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0119,
+        "correct_score": 0.1932,
+        "full_pool_rank": 10,
+        "full_pool_top1": "a samurai"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "箸",
+            "en": "chopsticks",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "パン",
+            "en": "a loaf of bread",
+            "role": "far",
+            "sim": 0.7317
+          },
+          {
+            "ja": "赤ちゃん",
+            "en": "a baby",
+            "role": "mid",
+            "sim": 0.7708
+          },
+          {
+            "ja": "刀",
+            "en": "a sword",
+            "role": "near",
+            "sim": 0.8253
+          }
+        ],
+        "four_choice_top1": "chopsticks",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.1026,
+        "correct_score": 0.3067,
+        "full_pool_rank": 1,
+        "full_pool_top1": "chopsticks"
+      }
+    },
+    {
+      "index": 26,
+      "ja_text": "子どもが紙を折る",
+      "en_text": "a child folding a sheet of paper",
+      "subject_en": "a child",
+      "object_en": "a sheet of paper",
+      "subject": {
+        "options": [
+          {
+            "ja": "キツネ",
+            "en": "a fox",
+            "role": "far",
+            "sim": 0.8211
+          },
+          {
+            "ja": "男性",
+            "en": "a man",
+            "role": "near",
+            "sim": 0.9282
+          },
+          {
+            "ja": "子ども",
+            "en": "a child",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "サル",
+            "en": "a monkey",
+            "role": "mid",
+            "sim": 0.8705
+          }
+        ],
+        "four_choice_top1": "a child",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0238,
+        "correct_score": 0.2209,
+        "full_pool_rank": 2,
+        "full_pool_top1": "a student"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "カバン",
+            "en": "a bag",
+            "role": "near",
+            "sim": 0.8364
+          },
+          {
+            "ja": "アイスクリーム",
+            "en": "an ice cream cone",
+            "role": "far",
+            "sim": 0.7705
+          },
+          {
+            "ja": "紙",
+            "en": "a sheet of paper",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "はちみつ",
+            "en": "honey",
+            "role": "mid",
+            "sim": 0.8077
+          }
+        ],
+        "four_choice_top1": "a sheet of paper",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0837,
+        "correct_score": 0.2693,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a sheet of paper"
+      }
+    },
+    {
+      "index": 27,
+      "ja_text": "少年が亀を追いかける",
+      "en_text": "a boy chasing a turtle",
+      "subject_en": "a boy",
+      "object_en": "a turtle",
+      "subject": {
+        "options": [
+          {
+            "ja": "ペンギン",
+            "en": "a penguin",
+            "role": "far",
+            "sim": 0.7847
+          },
+          {
+            "ja": "少年",
+            "en": "a boy",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "女性",
+            "en": "a woman",
+            "role": "near",
+            "sim": 0.9224
+          },
+          {
+            "ja": "カエル",
+            "en": "a frog",
+            "role": "mid",
+            "sim": 0.8604
+          }
+        ],
+        "four_choice_top1": "a frog",
+        "four_choice_correct": false,
+        "four_choice_margin": 0.013,
+        "correct_score": 0.2043,
+        "full_pool_rank": 8,
+        "full_pool_top1": "a turtle"
+      },
+      "object": {
+        "options": [
+          {
+            "ja": "亀",
+            "en": "a turtle",
+            "role": "correct",
+            "sim": 1.0
+          },
+          {
+            "ja": "ドア",
+            "en": "a door",
+            "role": "mid",
+            "sim": 0.8065
+          },
+          {
+            "ja": "魚",
+            "en": "a fish",
+            "role": "near",
+            "sim": 0.8828
+          },
+          {
+            "ja": "ラーメン",
+            "en": "a bowl of ramen",
+            "role": "far",
+            "sim": 0.7039
+          }
+        ],
+        "four_choice_top1": "a turtle",
+        "four_choice_correct": true,
+        "four_choice_margin": 0.0703,
+        "correct_score": 0.2629,
+        "full_pool_rank": 1,
+        "full_pool_top1": "a turtle"
+      }
+    }
+  ],
+  "summary": {
+    "subject": {
+      "four_choice_accuracy": 0.893,
+      "full_pool_top1_rate": 0.571,
+      "full_pool_top3_rate": 0.75,
+      "margin_when_correct": {
+        "min": 0.0047,
+        "median": 0.0541,
+        "max": 0.1105
+      },
+      "margin_when_wrong": {
+        "min": 0.0016,
+        "median": 0.0069,
+        "max": 0.013
+      }
+    },
+    "object": {
+      "four_choice_accuracy": 1.0,
+      "full_pool_top1_rate": 0.821,
+      "full_pool_top3_rate": 0.964,
+      "margin_when_correct": {
+        "min": 0.0003,
+        "median": 0.0537,
+        "max": 0.1225
+      },
+      "margin_when_wrong": {
+        "min": null,
+        "median": null,
+        "max": null
+      }
+    }
+  }
+}

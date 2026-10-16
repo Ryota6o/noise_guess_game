@@ -1,0 +1,547 @@
+{
+  "_comment": [
+    "ダミー選択肢の供給元であり、事前チェック(CLIPゼロショット)の候補集合でもある。",
+    "RULES.md §5: ダミーは正解と同じカテゴリの語にする(「だれが」の候補に動詞を混ぜない)。",
+    "実際にプレイヤーが入れそうな語で組む。マニアックな語は意図的に入れない。",
+    "本番では、過去にプレイヤーが入力して事前チェックを通った語がここに積み上がる(§2.6)。",
+    "en は画像生成とCLIP照合に使う。ja は選択肢の表示に使う(計画書 §3.5)。"
+  ],
+  "subjects": [
+    {
+      "ja": "犬",
+      "en": "a dog"
+    },
+    {
+      "ja": "猫",
+      "en": "a cat"
+    },
+    {
+      "ja": "ネズミ",
+      "en": "a mouse"
+    },
+    {
+      "ja": "ウサギ",
+      "en": "a rabbit"
+    },
+    {
+      "ja": "キツネ",
+      "en": "a fox"
+    },
+    {
+      "ja": "クマ",
+      "en": "a bear"
+    },
+    {
+      "ja": "ゾウ",
+      "en": "an elephant"
+    },
+    {
+      "ja": "ライオン",
+      "en": "a lion"
+    },
+    {
+      "ja": "サル",
+      "en": "a monkey"
+    },
+    {
+      "ja": "ウマ",
+      "en": "a horse"
+    },
+    {
+      "ja": "ウシ",
+      "en": "a cow"
+    },
+    {
+      "ja": "ブタ",
+      "en": "a pig"
+    },
+    {
+      "ja": "ヒツジ",
+      "en": "a sheep"
+    },
+    {
+      "ja": "トリ",
+      "en": "a bird"
+    },
+    {
+      "ja": "ペンギン",
+      "en": "a penguin"
+    },
+    {
+      "ja": "カエル",
+      "en": "a frog"
+    },
+    {
+      "ja": "カメ",
+      "en": "a turtle"
+    },
+    {
+      "ja": "ヘビ",
+      "en": "a snake"
+    },
+    {
+      "ja": "サメ",
+      "en": "a shark"
+    },
+    {
+      "ja": "タコ",
+      "en": "an octopus"
+    },
+    {
+      "ja": "男の子",
+      "en": "a boy"
+    },
+    {
+      "ja": "女の子",
+      "en": "a girl"
+    },
+    {
+      "ja": "男性",
+      "en": "a man"
+    },
+    {
+      "ja": "女性",
+      "en": "a woman"
+    },
+    {
+      "ja": "赤ちゃん",
+      "en": "a baby"
+    },
+    {
+      "ja": "おばあさん",
+      "en": "an old woman"
+    },
+    {
+      "ja": "おじいさん",
+      "en": "an old man"
+    },
+    {
+      "ja": "学生",
+      "en": "a student"
+    },
+    {
+      "ja": "先生",
+      "en": "a teacher"
+    },
+    {
+      "ja": "医者",
+      "en": "a doctor"
+    },
+    {
+      "ja": "看護師",
+      "en": "a nurse"
+    },
+    {
+      "ja": "警察官",
+      "en": "a police officer"
+    },
+    {
+      "ja": "消防士",
+      "en": "a firefighter"
+    },
+    {
+      "ja": "泥棒",
+      "en": "a thief"
+    },
+    {
+      "ja": "料理人",
+      "en": "a chef"
+    },
+    {
+      "ja": "農家の人",
+      "en": "a farmer"
+    },
+    {
+      "ja": "サッカー選手",
+      "en": "a soccer player"
+    },
+    {
+      "ja": "力士",
+      "en": "a sumo wrestler"
+    },
+    {
+      "ja": "侍",
+      "en": "a samurai"
+    },
+    {
+      "ja": "忍者",
+      "en": "a ninja"
+    },
+    {
+      "ja": "宇宙飛行士",
+      "en": "an astronaut"
+    },
+    {
+      "ja": "ロボット",
+      "en": "a robot"
+    },
+    {
+      "ja": "魔女",
+      "en": "a witch"
+    },
+    {
+      "ja": "サンタクロース",
+      "en": "Santa Claus"
+    },
+    {
+      "ja": "ピエロ",
+      "en": "a clown"
+    },
+    {
+      "ja": "歌手",
+      "en": "a singer"
+    },
+    {
+      "ja": "画家",
+      "en": "a painter"
+    },
+    {
+      "ja": "運転手",
+      "en": "a bus driver"
+    },
+    {
+      "ja": "レスラー",
+      "en": "a wrestler"
+    },
+    {
+      "ja": "子ども",
+      "en": "a child"
+    }
+  ],
+  "objects": [
+    {
+      "ja": "りんご",
+      "en": "an apple"
+    },
+    {
+      "ja": "バナナ",
+      "en": "a banana"
+    },
+    {
+      "ja": "ケーキ",
+      "en": "a cake"
+    },
+    {
+      "ja": "パン",
+      "en": "a loaf of bread"
+    },
+    {
+      "ja": "ラーメン",
+      "en": "a bowl of ramen"
+    },
+    {
+      "ja": "寿司",
+      "en": "sushi"
+    },
+    {
+      "ja": "アイスクリーム",
+      "en": "an ice cream cone"
+    },
+    {
+      "ja": "はちみつ",
+      "en": "honey"
+    },
+    {
+      "ja": "コップ",
+      "en": "a cup"
+    },
+    {
+      "ja": "皿",
+      "en": "a plate"
+    },
+    {
+      "ja": "箸",
+      "en": "chopsticks"
+    },
+    {
+      "ja": "鍋",
+      "en": "a cooking pot"
+    },
+    {
+      "ja": "本",
+      "en": "a book"
+    },
+    {
+      "ja": "新聞",
+      "en": "a newspaper"
+    },
+    {
+      "ja": "紙",
+      "en": "a sheet of paper"
+    },
+    {
+      "ja": "手紙",
+      "en": "a letter"
+    },
+    {
+      "ja": "鉛筆",
+      "en": "a pencil"
+    },
+    {
+      "ja": "カメラ",
+      "en": "a camera"
+    },
+    {
+      "ja": "スマホ",
+      "en": "a smartphone"
+    },
+    {
+      "ja": "傘",
+      "en": "an umbrella"
+    },
+    {
+      "ja": "カバン",
+      "en": "a bag"
+    },
+    {
+      "ja": "帽子",
+      "en": "a hat"
+    },
+    {
+      "ja": "靴",
+      "en": "a shoe"
+    },
+    {
+      "ja": "ボール",
+      "en": "a ball"
+    },
+    {
+      "ja": "風船",
+      "en": "a balloon"
+    },
+    {
+      "ja": "積み木",
+      "en": "wooden blocks"
+    },
+    {
+      "ja": "ぬいぐるみ",
+      "en": "a teddy bear"
+    },
+    {
+      "ja": "ギター",
+      "en": "a guitar"
+    },
+    {
+      "ja": "自転車",
+      "en": "a bicycle"
+    },
+    {
+      "ja": "車",
+      "en": "a car"
+    },
+    {
+      "ja": "はしご",
+      "en": "a ladder"
+    },
+    {
+      "ja": "丸太",
+      "en": "a log"
+    },
+    {
+      "ja": "植木",
+      "en": "a potted plant"
+    },
+    {
+      "ja": "花",
+      "en": "a flower"
+    },
+    {
+      "ja": "木",
+      "en": "a tree"
+    },
+    {
+      "ja": "石",
+      "en": "a rock"
+    },
+    {
+      "ja": "刀",
+      "en": "a sword"
+    },
+    {
+      "ja": "箱",
+      "en": "a box"
+    },
+    {
+      "ja": "椅子",
+      "en": "a chair"
+    },
+    {
+      "ja": "ドア",
+      "en": "a door"
+    },
+    {
+      "ja": "橋",
+      "en": "a bridge"
+    },
+    {
+      "ja": "魚",
+      "en": "a fish"
+    },
+    {
+      "ja": "犬",
+      "en": "a dog"
+    },
+    {
+      "ja": "猫",
+      "en": "a cat"
+    },
+    {
+      "ja": "牛",
+      "en": "a cow"
+    },
+    {
+      "ja": "ロボット",
+      "en": "a robot"
+    },
+    {
+      "ja": "赤ちゃん",
+      "en": "a baby"
+    },
+    {
+      "ja": "老人",
+      "en": "an elderly man"
+    },
+    {
+      "ja": "レスラー",
+      "en": "a wrestler"
+    },
+    {
+      "ja": "審判",
+      "en": "a referee"
+    },
+    {
+      "ja": "泥棒",
+      "en": "a thief"
+    },
+    {
+      "ja": "亀",
+      "en": "a turtle"
+    },
+    {
+      "ja": "ネズミ",
+      "en": "a mouse"
+    }
+  ],
+  "predicates": [
+    {
+      "ja": "追いかける",
+      "en": "chasing"
+    },
+    {
+      "ja": "捕まえる",
+      "en": "catching"
+    },
+    {
+      "ja": "食べる",
+      "en": "eating"
+    },
+    {
+      "ja": "飲む",
+      "en": "drinking"
+    },
+    {
+      "ja": "読む",
+      "en": "reading"
+    },
+    {
+      "ja": "書く",
+      "en": "writing"
+    },
+    {
+      "ja": "運ぶ",
+      "en": "carrying"
+    },
+    {
+      "ja": "投げる",
+      "en": "throwing"
+    },
+    {
+      "ja": "蹴る",
+      "en": "kicking"
+    },
+    {
+      "ja": "押す",
+      "en": "pushing"
+    },
+    {
+      "ja": "引っぱる",
+      "en": "pulling"
+    },
+    {
+      "ja": "持つ",
+      "en": "holding"
+    },
+    {
+      "ja": "洗う",
+      "en": "washing"
+    },
+    {
+      "ja": "切る",
+      "en": "cutting"
+    },
+    {
+      "ja": "折る",
+      "en": "folding"
+    },
+    {
+      "ja": "積む",
+      "en": "stacking"
+    },
+    {
+      "ja": "登る",
+      "en": "climbing"
+    },
+    {
+      "ja": "渡る",
+      "en": "crossing"
+    },
+    {
+      "ja": "抱きしめる",
+      "en": "hugging"
+    },
+    {
+      "ja": "見つめる",
+      "en": "staring at"
+    },
+    {
+      "ja": "なめる",
+      "en": "licking"
+    },
+    {
+      "ja": "つかむ",
+      "en": "grabbing"
+    },
+    {
+      "ja": "支える",
+      "en": "supporting"
+    },
+    {
+      "ja": "作る",
+      "en": "cooking"
+    },
+    {
+      "ja": "倒す",
+      "en": "knocking over"
+    },
+    {
+      "ja": "弾く",
+      "en": "playing"
+    },
+    {
+      "ja": "さす",
+      "en": "holding up"
+    },
+    {
+      "ja": "抜く",
+      "en": "drawing"
+    },
+    {
+      "ja": "隠す",
+      "en": "hiding"
+    },
+    {
+      "ja": "踏む",
+      "en": "stepping on"
+    }
+  ]
+}

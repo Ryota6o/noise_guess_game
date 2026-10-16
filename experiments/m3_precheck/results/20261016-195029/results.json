@@ -1,0 +1,463 @@
+{
+  "experiment": "E5-verb-check",
+  "model": "Qwen/Qwen3-VL-8B-Instruct",
+  "measured_at": "2026-10-16T19:50:50",
+  "m2_run": "/home/ryotaro/games/diffusion_quest/experiments/m2_japanese_roles/results/20261016-190338",
+  "records": [
+    {
+      "index": 0,
+      "ja_text": "犬が猫を追いかける",
+      "predicate_en": "chasing",
+      "options": [
+        "chasing",
+        "crossing",
+        "drinking",
+        "carrying"
+      ],
+      "test_picked": "chasing",
+      "test_correct": true,
+      "control_image_index": 14,
+      "control_picked": "crossing",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 1,
+      "ja_text": "猫がネズミを追いかける",
+      "predicate_en": "chasing",
+      "options": [
+        "crossing",
+        "chasing",
+        "licking",
+        "throwing"
+      ],
+      "test_picked": "chasing",
+      "test_correct": true,
+      "control_image_index": 15,
+      "control_picked": "crossing",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 2,
+      "ja_text": "警察官が泥棒を捕まえる",
+      "predicate_en": "catching",
+      "options": [
+        "crossing",
+        "hugging",
+        "catching",
+        "playing"
+      ],
+      "test_picked": "crossing",
+      "test_correct": false,
+      "control_image_index": 16,
+      "control_picked": "hugging",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 3,
+      "ja_text": "女の子が犬を抱きしめる",
+      "predicate_en": "hugging",
+      "options": [
+        "chasing",
+        "hugging",
+        "washing",
+        "hiding"
+      ],
+      "test_picked": "hugging",
+      "test_correct": true,
+      "control_image_index": 17,
+      "control_picked": "hugging",
+      "control_picked_correct_option": true
+    },
+    {
+      "index": 4,
+      "ja_text": "男性が犬を洗う",
+      "predicate_en": "washing",
+      "options": [
+        "drinking",
+        "washing",
+        "writing",
+        "stepping on"
+      ],
+      "test_picked": "washing",
+      "test_correct": true,
+      "control_image_index": 18,
+      "control_picked": "drinking",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 5,
+      "ja_text": "鳥が魚をつかむ",
+      "predicate_en": "grabbing",
+      "options": [
+        "grabbing",
+        "cooking",
+        "hiding",
+        "holding"
+      ],
+      "test_picked": "holding",
+      "test_correct": false,
+      "control_image_index": 19,
+      "control_picked": "grabbing",
+      "control_picked_correct_option": true
+    },
+    {
+      "index": 6,
+      "ja_text": "農家の人が牛を引っぱる",
+      "predicate_en": "pulling",
+      "options": [
+        "cutting",
+        "hugging",
+        "hiding",
+        "pulling"
+      ],
+      "test_picked": "pulling",
+      "test_correct": true,
+      "control_image_index": 20,
+      "control_picked": "cutting",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 7,
+      "ja_text": "子どもがロボットを押す",
+      "predicate_en": "pushing",
+      "options": [
+        "hugging",
+        "chasing",
+        "grabbing",
+        "pushing"
+      ],
+      "test_picked": "pushing",
+      "test_correct": true,
+      "control_image_index": 21,
+      "control_picked": "grabbing",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 8,
+      "ja_text": "猿が赤ちゃんを見つめる",
+      "predicate_en": "staring at",
+      "options": [
+        "eating",
+        "catching",
+        "throwing",
+        "staring at"
+      ],
+      "test_picked": "staring at",
+      "test_correct": true,
+      "control_image_index": 22,
+      "control_picked": "staring at",
+      "control_picked_correct_option": true
+    },
+    {
+      "index": 9,
+      "ja_text": "力士がレスラーを投げる",
+      "predicate_en": "throwing",
+      "options": [
+        "catching",
+        "drawing",
+        "throwing",
+        "licking"
+      ],
+      "test_picked": "throwing",
+      "test_correct": true,
+      "control_image_index": 23,
+      "control_picked": "catching",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 10,
+      "ja_text": "看護師が老人を支える",
+      "predicate_en": "supporting",
+      "options": [
+        "washing",
+        "drinking",
+        "pulling",
+        "supporting"
+      ],
+      "test_picked": "supporting",
+      "test_correct": true,
+      "control_image_index": 24,
+      "control_picked": "pulling",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 11,
+      "ja_text": "サッカー選手が審判を蹴る",
+      "predicate_en": "kicking",
+      "options": [
+        "stepping on",
+        "kicking",
+        "licking",
+        "eating"
+      ],
+      "test_picked": "kicking",
+      "test_correct": true,
+      "control_image_index": 25,
+      "control_picked": "eating",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 12,
+      "ja_text": "男の子がりんごを食べる",
+      "predicate_en": "eating",
+      "options": [
+        "hugging",
+        "eating",
+        "playing",
+        "stacking"
+      ],
+      "test_picked": "eating",
+      "test_correct": true,
+      "control_image_index": 26,
+      "control_picked": "stacking",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 13,
+      "ja_text": "猫がコップを倒す",
+      "predicate_en": "knocking over",
+      "options": [
+        "drawing",
+        "knocking over",
+        "hugging",
+        "pulling"
+      ],
+      "test_picked": "knocking over",
+      "test_correct": true,
+      "control_image_index": 27,
+      "control_picked": "knocking over",
+      "control_picked_correct_option": true
+    },
+    {
+      "index": 14,
+      "ja_text": "女性が本を読む",
+      "predicate_en": "reading",
+      "options": [
+        "throwing",
+        "reading",
+        "writing",
+        "holding up"
+      ],
+      "test_picked": "reading",
+      "test_correct": true,
+      "control_image_index": 0,
+      "control_picked": "throwing",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 15,
+      "ja_text": "象が丸太を運ぶ",
+      "predicate_en": "carrying",
+      "options": [
+        "drinking",
+        "crossing",
+        "carrying",
+        "holding"
+      ],
+      "test_picked": "carrying",
+      "test_correct": true,
+      "control_image_index": 1,
+      "control_picked": "crossing",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 16,
+      "ja_text": "ロボットが植木を運ぶ",
+      "predicate_en": "carrying",
+      "options": [
+        "chasing",
+        "carrying",
+        "washing",
+        "kicking"
+      ],
+      "test_picked": "carrying",
+      "test_correct": true,
+      "control_image_index": 2,
+      "control_picked": "chasing",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 17,
+      "ja_text": "料理人がラーメンを作る",
+      "predicate_en": "cooking",
+      "options": [
+        "cooking",
+        "eating",
+        "stacking",
+        "licking"
+      ],
+      "test_picked": "eating",
+      "test_correct": false,
+      "control_image_index": 3,
+      "control_picked": "eating",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 18,
+      "ja_text": "熊がはちみつをなめる",
+      "predicate_en": "licking",
+      "options": [
+        "catching",
+        "crossing",
+        "drinking",
+        "licking"
+      ],
+      "test_picked": "licking",
+      "test_correct": true,
+      "control_image_index": 4,
+      "control_picked": "drinking",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 19,
+      "ja_text": "消防士がはしごを登る",
+      "predicate_en": "climbing",
+      "options": [
+        "licking",
+        "supporting",
+        "climbing",
+        "pushing"
+      ],
+      "test_picked": "climbing",
+      "test_correct": true,
+      "control_image_index": 5,
+      "control_picked": "supporting",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 20,
+      "ja_text": "赤ちゃんが積み木を積む",
+      "predicate_en": "stacking",
+      "options": [
+        "staring at",
+        "stacking",
+        "crossing",
+        "pushing"
+      ],
+      "test_picked": "stacking",
+      "test_correct": true,
+      "control_image_index": 6,
+      "control_picked": "pushing",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 21,
+      "ja_text": "侍が刀を抜く",
+      "predicate_en": "drawing",
+      "options": [
+        "playing",
+        "knocking over",
+        "stepping on",
+        "drawing"
+      ],
+      "test_picked": "drawing",
+      "test_correct": true,
+      "control_image_index": 7,
+      "control_picked": "playing",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 22,
+      "ja_text": "おばあさんが傘をさす",
+      "predicate_en": "holding up",
+      "options": [
+        "holding",
+        "carrying",
+        "licking",
+        "holding up"
+      ],
+      "test_picked": "holding up",
+      "test_correct": true,
+      "control_image_index": 8,
+      "control_picked": "holding",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 23,
+      "ja_text": "学生が自転車を押す",
+      "predicate_en": "pushing",
+      "options": [
+        "writing",
+        "licking",
+        "playing",
+        "pushing"
+      ],
+      "test_picked": "pushing",
+      "test_correct": true,
+      "control_image_index": 9,
+      "control_picked": "pushing",
+      "control_picked_correct_option": true
+    },
+    {
+      "index": 24,
+      "ja_text": "男性が橋を渡る",
+      "predicate_en": "crossing",
+      "options": [
+        "pushing",
+        "writing",
+        "folding",
+        "crossing"
+      ],
+      "test_picked": "crossing",
+      "test_correct": true,
+      "control_image_index": 10,
+      "control_picked": "crossing",
+      "control_picked_correct_option": true
+    },
+    {
+      "index": 25,
+      "ja_text": "女性が箸を持つ",
+      "predicate_en": "holding",
+      "options": [
+        "washing",
+        "holding",
+        "supporting",
+        "grabbing"
+      ],
+      "test_picked": "holding",
+      "test_correct": true,
+      "control_image_index": 11,
+      "control_picked": "holding",
+      "control_picked_correct_option": true
+    },
+    {
+      "index": 26,
+      "ja_text": "子どもが紙を折る",
+      "predicate_en": "folding",
+      "options": [
+        "cutting",
+        "folding",
+        "reading",
+        "licking"
+      ],
+      "test_picked": "folding",
+      "test_correct": true,
+      "control_image_index": 12,
+      "control_picked": "licking",
+      "control_picked_correct_option": false
+    },
+    {
+      "index": 27,
+      "ja_text": "少年が亀を追いかける",
+      "predicate_en": "chasing",
+      "options": [
+        "stepping on",
+        "crossing",
+        "staring at",
+        "chasing"
+      ],
+      "test_picked": "chasing",
+      "test_correct": true,
+      "control_image_index": 13,
+      "control_picked": "stepping on",
+      "control_picked_correct_option": false
+    }
+  ],
+  "summary": {
+    "n": 28,
+    "test_accuracy": 0.893,
+    "control_rate": 0.25,
+    "chance_level": 0.25,
+    "usable": true
+  }
+}
