@@ -1,0 +1,42 @@
+{
+  "_comment": [
+    "M2(E2・E4)で使う3語の文。実際にプレイヤーが入れそうな語で組む。",
+    "subject=だれが / object=なにを / predicate=どうした。補語は使わない(RULES.md §1.2)。",
+    "reversible: 主語と目的語を入れ替えても絵として成立する組。E2の集計はここだけで行う。",
+    "入れ替えて意味が壊れる組(りんごが男の子を食べる等)を混ぜると、",
+    "役割の取り違えなのか、そもそも描けないのかが切り分けられないため。",
+    "homonym: 同音異義語を含む組。E4で英訳の曖昧さを見る(計画書 §3.5)。"
+  ],
+  "sentences": [
+    {"ja": ["犬", "猫", "追いかける"], "en": ["a dog", "a cat", "chasing"], "reversible": true},
+    {"ja": ["猫", "ネズミ", "追いかける"], "en": ["a cat", "a mouse", "chasing"], "reversible": true},
+    {"ja": ["警察官", "泥棒", "捕まえる"], "en": ["a police officer", "a thief", "catching"], "reversible": true},
+    {"ja": ["女の子", "犬", "抱きしめる"], "en": ["a girl", "a dog", "hugging"], "reversible": true},
+    {"ja": ["男性", "犬", "洗う"], "en": ["a man", "a dog", "washing"], "reversible": true},
+    {"ja": ["鳥", "魚", "つかむ"], "en": ["a bird", "a fish", "grabbing"], "reversible": true},
+    {"ja": ["農家の人", "牛", "引っぱる"], "en": ["a farmer", "a cow", "pulling"], "reversible": true},
+    {"ja": ["子ども", "ロボット", "押す"], "en": ["a child", "a robot", "pushing"], "reversible": true},
+    {"ja": ["猿", "赤ちゃん", "見つめる"], "en": ["a monkey", "a baby", "staring at"], "reversible": true},
+    {"ja": ["力士", "レスラー", "投げる"], "en": ["a sumo wrestler", "a wrestler", "throwing"], "reversible": true},
+    {"ja": ["看護師", "老人", "支える"], "en": ["a nurse", "an elderly man", "supporting"], "reversible": true},
+    {"ja": ["サッカー選手", "審判", "蹴る"], "en": ["a soccer player", "a referee", "kicking"], "reversible": true},
+
+    {"ja": ["男の子", "りんご", "食べる"], "en": ["a boy", "an apple", "eating"], "reversible": false},
+    {"ja": ["猫", "コップ", "倒す"], "en": ["a cat", "a cup", "knocking over"], "reversible": false},
+    {"ja": ["女性", "本", "読む"], "en": ["a woman", "a book", "reading"], "reversible": false},
+    {"ja": ["象", "丸太", "運ぶ"], "en": ["an elephant", "a log", "carrying"], "reversible": false},
+    {"ja": ["ロボット", "植木", "運ぶ"], "en": ["a robot", "a potted plant", "carrying"], "reversible": false},
+    {"ja": ["料理人", "ラーメン", "作る"], "en": ["a chef", "a bowl of ramen", "cooking"], "reversible": false},
+    {"ja": ["熊", "はちみつ", "なめる"], "en": ["a bear", "honey", "licking"], "reversible": false},
+    {"ja": ["消防士", "はしご", "登る"], "en": ["a firefighter", "a ladder", "climbing"], "reversible": false},
+    {"ja": ["赤ちゃん", "積み木", "積む"], "en": ["a baby", "wooden blocks", "stacking"], "reversible": false},
+    {"ja": ["侍", "刀", "抜く"], "en": ["a samurai", "a sword", "drawing"], "reversible": false},
+    {"ja": ["おばあさん", "傘", "さす"], "en": ["an old woman", "an umbrella", "holding up"], "reversible": false},
+    {"ja": ["学生", "自転車", "押す"], "en": ["a student", "a bicycle", "pushing"], "reversible": false},
+
+    {"ja": ["男性", "橋", "渡る"], "en": ["a man", "a bridge", "crossing"], "reversible": false, "homonym": "橋/箸"},
+    {"ja": ["女性", "箸", "持つ"], "en": ["a woman", "chopsticks", "holding"], "reversible": false, "homonym": "箸/橋"},
+    {"ja": ["子ども", "紙", "折る"], "en": ["a child", "a sheet of paper", "folding"], "reversible": false, "homonym": "紙/神"},
+    {"ja": ["少年", "亀", "追いかける"], "en": ["a boy", "a turtle", "chasing"], "reversible": true, "homonym": "亀/瓶"}
+  ]
+}

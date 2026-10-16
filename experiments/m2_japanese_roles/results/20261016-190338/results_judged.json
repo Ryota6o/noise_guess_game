@@ -1,0 +1,1606 @@
+{
+  "experiment": "M2-japanese-and-roles",
+  "measured_at": "2026-10-16T19:05:22",
+  "model_id": "Tongyi-MAI/Z-Image-Turbo",
+  "size": 512,
+  "steps": 8,
+  "records": [
+    {
+      "index": 0,
+      "ja_text": "犬が猫を追いかける",
+      "en_text": "a dog chasing a cat",
+      "en_swapped_text": "a cat chasing a dog",
+      "reversible": true,
+      "homonym": null,
+      "seed": 42,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3369,
+          "to_swapped": 0.3364,
+          "margin": 0.0005
+        },
+        "en": {
+          "to_normal": 0.3288,
+          "to_swapped": 0.3272,
+          "margin": 0.0016
+        },
+        "en_swapped": {
+          "to_normal": 0.3336,
+          "to_swapped": 0.3341,
+          "margin": -0.0004
+        }
+      },
+      "files": [
+        "00_ja.png",
+        "00_en.png",
+        "00_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A joyful corgi runs alongside a calm tabby cat on a paved path."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A joyful brown and white dog runs energetically across a grassy field, playfully chasing a tabby cat with a raised tail."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "role_probe_control": {
+        "verdict": "same",
+        "raw": "SAME",
+        "normal_shown_first": false
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 1,
+      "ja_text": "猫がネズミを追いかける",
+      "en_text": "a cat chasing a mouse",
+      "en_swapped_text": "a mouse chasing a cat",
+      "reversible": true,
+      "homonym": null,
+      "seed": 142,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3033,
+          "to_swapped": 0.2998,
+          "margin": 0.0034
+        },
+        "en": {
+          "to_normal": 0.3311,
+          "to_swapped": 0.3175,
+          "margin": 0.0136
+        },
+        "en_swapped": {
+          "to_normal": 0.3369,
+          "to_swapped": 0.3338,
+          "margin": 0.0031
+        }
+      },
+      "files": [
+        "01_ja.png",
+        "01_en.png",
+        "01_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A tabby cat with green eyes crouches low, paws hovering over a toy mouse on the pavement, ready to pounce."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A tabby cat cautiously approaches a tiny toy mouse on a wooden floor."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": true
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": true
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "role_probe_control": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 2,
+      "ja_text": "警察官が泥棒を捕まえる",
+      "en_text": "a police officer catching a thief",
+      "en_swapped_text": "a thief catching a police officer",
+      "reversible": true,
+      "homonym": null,
+      "seed": 242,
+      "clip": {
+        "ja": {
+          "to_normal": 0.2639,
+          "to_swapped": 0.2597,
+          "margin": 0.0042
+        },
+        "en": {
+          "to_normal": 0.2832,
+          "to_swapped": 0.2783,
+          "margin": 0.0049
+        },
+        "en_swapped": {
+          "to_normal": 0.2799,
+          "to_swapped": 0.2752,
+          "margin": 0.0047
+        }
+      },
+      "files": [
+        "02_ja.png",
+        "02_en.png",
+        "02_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": false,
+          "whole": false,
+          "caption": "A cartoon police officer with a confident smirk holds up a small object, accompanied by Japanese text that reads \"泥插ま捕まえる\" (dirt plug capture) and \"警まえ\""
+        },
+        "en": {
+          "subject": true,
+          "object": false,
+          "whole": false,
+          "caption": "A police officer in a bright yellow vest is gesturing and speaking to a man in a dark jacket on a street."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": true
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": true
+      },
+      "role_probe_control": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": true
+      },
+      "text_artifact": {
+        "ja": true,
+        "en": true
+      }
+    },
+    {
+      "index": 3,
+      "ja_text": "女の子が犬を抱きしめる",
+      "en_text": "a girl hugging a dog",
+      "en_swapped_text": "a dog hugging a girl",
+      "reversible": true,
+      "homonym": null,
+      "seed": 342,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3043,
+          "to_swapped": 0.2906,
+          "margin": 0.0137
+        },
+        "en": {
+          "to_normal": 0.3073,
+          "to_swapped": 0.3061,
+          "margin": 0.0012
+        },
+        "en_swapped": {
+          "to_normal": 0.3217,
+          "to_swapped": 0.3189,
+          "margin": 0.0028
+        }
+      },
+      "files": [
+        "03_ja.png",
+        "03_en.png",
+        "03_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A young woman gently cradles a fluffy golden puppy in her arms outdoors on a grassy field."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A young woman with long dark hair smiles warmly while hugging a fluffy golden puppy in a cozy indoor setting."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": true
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "same",
+        "raw": "SAME",
+        "normal_shown_first": true
+      },
+      "role_probe_control": {
+        "verdict": "same",
+        "raw": "SAME",
+        "normal_shown_first": true
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 4,
+      "ja_text": "男性が犬を洗う",
+      "en_text": "a man washing a dog",
+      "en_swapped_text": "a dog washing a man",
+      "reversible": true,
+      "homonym": null,
+      "seed": 442,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3029,
+          "to_swapped": 0.3091,
+          "margin": -0.0061
+        },
+        "en": {
+          "to_normal": 0.296,
+          "to_swapped": 0.304,
+          "margin": -0.008
+        },
+        "en_swapped": {
+          "to_normal": 0.3302,
+          "to_swapped": 0.3338,
+          "margin": -0.0036
+        }
+      },
+      "files": [
+        "04_ja.png",
+        "04_en.png",
+        "04_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": false,
+          "object": true,
+          "whole": false,
+          "caption": "A person is gently bathing a wet, happy-looking small dog in a white plastic tub."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A person gently washes a happy bulldog in a white sink with running water."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": true
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "role_probe_control": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 5,
+      "ja_text": "鳥が魚をつかむ",
+      "en_text": "a bird grabbing a fish",
+      "en_swapped_text": "a fish grabbing a bird",
+      "reversible": true,
+      "homonym": null,
+      "seed": 542,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3203,
+          "to_swapped": 0.3254,
+          "margin": -0.0051
+        },
+        "en": {
+          "to_normal": 0.3094,
+          "to_swapped": 0.3109,
+          "margin": -0.0015
+        },
+        "en_swapped": {
+          "to_normal": 0.3214,
+          "to_swapped": 0.3279,
+          "margin": -0.0065
+        }
+      },
+      "files": [
+        "05_ja.png",
+        "05_en.png",
+        "05_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A kingfisher in mid-flight, wings spread wide, clutches a small fish in its talons against a soft, blurred green background."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A kingfisher in mid-flight catches a small fish in its beak against a soft, blurred green background."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": true
+      },
+      "role_probe_control": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": true
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 6,
+      "ja_text": "農家の人が牛を引っぱる",
+      "en_text": "a farmer pulling a cow",
+      "en_swapped_text": "a cow pulling a farmer",
+      "reversible": true,
+      "homonym": null,
+      "seed": 642,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3269,
+          "to_swapped": 0.3132,
+          "margin": 0.0136
+        },
+        "en": {
+          "to_normal": 0.3257,
+          "to_swapped": 0.3097,
+          "margin": 0.016
+        },
+        "en_swapped": {
+          "to_normal": 0.311,
+          "to_swapped": 0.3008,
+          "margin": 0.0103
+        }
+      },
+      "files": [
+        "06_ja.png",
+        "06_en.png",
+        "06_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A man walks beside a brown and white ox pulling a plow through a grassy field."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A farmer guides a large brown and white cow across a grassy field using a long stick."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": true
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "role_probe_control": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 7,
+      "ja_text": "子どもがロボットを押す",
+      "en_text": "a child pushing a robot",
+      "en_swapped_text": "a robot pushing a child",
+      "reversible": true,
+      "homonym": null,
+      "seed": 742,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3079,
+          "to_swapped": 0.3108,
+          "margin": -0.0029
+        },
+        "en": {
+          "to_normal": 0.3294,
+          "to_swapped": 0.3349,
+          "margin": -0.0055
+        },
+        "en_swapped": {
+          "to_normal": 0.3295,
+          "to_swapped": 0.3284,
+          "margin": 0.0011
+        }
+      },
+      "files": [
+        "07_ja.png",
+        "07_en.png",
+        "07_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A young boy in a blue shirt is intently interacting with a small white and black robot toy on a wooden table."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A young child is enthusiastically pushing a small, silver robotic toy with tank-like treads across a carpeted floor."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": true
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": true
+      },
+      "role_probe_control": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": true
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 8,
+      "ja_text": "猿が赤ちゃんを見つめる",
+      "en_text": "a monkey staring at a baby",
+      "en_swapped_text": "a baby staring at a monkey",
+      "reversible": true,
+      "homonym": null,
+      "seed": 842,
+      "clip": {
+        "ja": {
+          "to_normal": 0.2703,
+          "to_swapped": 0.2636,
+          "margin": 0.0067
+        },
+        "en": {
+          "to_normal": 0.3271,
+          "to_swapped": 0.3205,
+          "margin": 0.0067
+        },
+        "en_swapped": {
+          "to_normal": 0.3281,
+          "to_swapped": 0.323,
+          "margin": 0.0051
+        }
+      },
+      "files": [
+        "08_ja.png",
+        "08_en.png",
+        "08_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A close-up of a young, fluffy brown monkey with big eyes, sitting with its hands clasped in front of its chest."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A baby in a light blue shirt gently reaches out to touch a curious macaque monkey, creating a tender moment of connection between species."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": true
+      },
+      "role_probe_control": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": true
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 9,
+      "ja_text": "力士がレスラーを投げる",
+      "en_text": "a sumo wrestler throwing a wrestler",
+      "en_swapped_text": "a wrestler throwing a sumo wrestler",
+      "reversible": true,
+      "homonym": null,
+      "seed": 942,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3023,
+          "to_swapped": 0.2982,
+          "margin": 0.0041
+        },
+        "en": {
+          "to_normal": 0.3629,
+          "to_swapped": 0.3529,
+          "margin": 0.0099
+        },
+        "en_swapped": {
+          "to_normal": 0.2902,
+          "to_swapped": 0.3039,
+          "margin": -0.0138
+        }
+      },
+      "files": [
+        "09_ja.png",
+        "09_en.png",
+        "09_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": false,
+          "object": true,
+          "whole": false,
+          "caption": "A male wrestler in a red singlet performs a dynamic, one-handed handstand on a wrestling mat, showcasing strength and balance during a competition."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "Two sumo wrestlers grapple intensely on the dohyo as spectators watch from the stands."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "en_swapped": {
+          "picked": "swapped",
+          "normal_shown_first": false
+        },
+        "verdict": "distinguished_correct"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "role_probe_control": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "text_artifact": {
+        "ja": true,
+        "en": false
+      }
+    },
+    {
+      "index": 10,
+      "ja_text": "看護師が老人を支える",
+      "en_text": "a nurse supporting an elderly man",
+      "en_swapped_text": "an elderly man supporting a nurse",
+      "reversible": true,
+      "homonym": null,
+      "seed": 1042,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3282,
+          "to_swapped": 0.3168,
+          "margin": 0.0114
+        },
+        "en": {
+          "to_normal": 0.323,
+          "to_swapped": 0.311,
+          "margin": 0.012
+        },
+        "en_swapped": {
+          "to_normal": 0.3362,
+          "to_swapped": 0.3244,
+          "margin": 0.0118
+        }
+      },
+      "files": [
+        "10_ja.png",
+        "10_en.png",
+        "10_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A smiling nurse in blue scrubs gently places her hands on an elderly man's shoulders while he sits comfortably in a chair."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A young female nurse in blue scrubs gently places a hand on the shoulder of an elderly male patient, offering comfort and care in a clinical setting."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": true
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "same",
+        "raw": "SAME",
+        "normal_shown_first": false
+      },
+      "role_probe_control": {
+        "verdict": "same",
+        "raw": "SAME",
+        "normal_shown_first": false
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 11,
+      "ja_text": "サッカー選手が審判を蹴る",
+      "en_text": "a soccer player kicking a referee",
+      "en_swapped_text": "a referee kicking a soccer player",
+      "reversible": true,
+      "homonym": null,
+      "seed": 1142,
+      "clip": {
+        "ja": {
+          "to_normal": 0.2785,
+          "to_swapped": 0.2804,
+          "margin": -0.0019
+        },
+        "en": {
+          "to_normal": 0.2684,
+          "to_swapped": 0.269,
+          "margin": -0.0006
+        },
+        "en_swapped": {
+          "to_normal": 0.2567,
+          "to_swapped": 0.2549,
+          "margin": 0.0018
+        }
+      },
+      "files": [
+        "11_ja.png",
+        "11_en.png",
+        "11_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A soccer referee in a green shirt kicks a ball while a player in a red jersey runs alongside him on a grass field."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A soccer player in a white jersey with the number 11 dribbles the ball while a referee in a teal shirt watches closely on a green field."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": false
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "role_probe_control": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": false
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": true
+      }
+    },
+    {
+      "index": 12,
+      "ja_text": "男の子がりんごを食べる",
+      "en_text": "a boy eating an apple",
+      "en_swapped_text": "an apple eating a boy",
+      "reversible": false,
+      "homonym": null,
+      "seed": 1242,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3414,
+          "to_swapped": 0.3282,
+          "margin": 0.0132
+        },
+        "en": {
+          "to_normal": 0.342,
+          "to_swapped": 0.3245,
+          "margin": 0.0175
+        }
+      },
+      "files": [
+        "12_ja.png",
+        "12_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A young boy in a blue shirt happily eats a red apple outdoors."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A young boy in a blue shirt happily eats a red apple outdoors on a sunny day."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 13,
+      "ja_text": "猫がコップを倒す",
+      "en_text": "a cat knocking over a cup",
+      "en_swapped_text": "a cup knocking over a cat",
+      "reversible": false,
+      "homonym": null,
+      "seed": 1342,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3222,
+          "to_swapped": 0.3206,
+          "margin": 0.0016
+        },
+        "en": {
+          "to_normal": 0.3179,
+          "to_swapped": 0.318,
+          "margin": -0.0002
+        }
+      },
+      "files": [
+        "13_ja.png",
+        "13_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A curious tabby cat leans over a white mug, seemingly about to drink from it."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A tabby cat with white paws is curiously sniffing a spilled green cup on a wooden floor."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 14,
+      "ja_text": "女性が本を読む",
+      "en_text": "a woman reading a book",
+      "en_swapped_text": "a book reading a woman",
+      "reversible": false,
+      "homonym": null,
+      "seed": 1442,
+      "clip": {
+        "ja": {
+          "to_normal": 0.2809,
+          "to_swapped": 0.2632,
+          "margin": 0.0178
+        },
+        "en": {
+          "to_normal": 0.3081,
+          "to_swapped": 0.2916,
+          "margin": 0.0165
+        }
+      },
+      "files": [
+        "14_ja.png",
+        "14_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A young woman with dark hair is intently reading a book while seated at a wooden table near a window."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A young woman sits peacefully indoors, deeply engrossed in reading a book."
+        }
+      },
+      "text_artifact": {
+        "ja": true,
+        "en": false
+      }
+    },
+    {
+      "index": 15,
+      "ja_text": "象が丸太を運ぶ",
+      "en_text": "an elephant carrying a log",
+      "en_swapped_text": "a log carrying an elephant",
+      "reversible": false,
+      "homonym": null,
+      "seed": 1542,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3178,
+          "to_swapped": 0.3034,
+          "margin": 0.0144
+        },
+        "en": {
+          "to_normal": 0.3456,
+          "to_swapped": 0.3279,
+          "margin": 0.0177
+        }
+      },
+      "files": [
+        "15_ja.png",
+        "15_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A large elephant with prominent tusks stands on a dirt path near a log in a lush, green, tropical setting."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "An elephant carries a large log on its back through a dry, grassy savanna."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 16,
+      "ja_text": "ロボットが植木を運ぶ",
+      "en_text": "a robot carrying a potted plant",
+      "en_swapped_text": "a potted plant carrying a robot",
+      "reversible": false,
+      "homonym": null,
+      "seed": 1642,
+      "clip": {
+        "ja": {
+          "to_normal": 0.2917,
+          "to_swapped": 0.2903,
+          "margin": 0.0015
+        },
+        "en": {
+          "to_normal": 0.3337,
+          "to_swapped": 0.3353,
+          "margin": -0.0016
+        }
+      },
+      "files": [
+        "16_ja.png",
+        "16_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": false,
+          "whole": false,
+          "caption": "A white robot is planting a small tree in a sunny, green garden."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A white robot with glowing blue eyes gently holds a potted green plant."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 17,
+      "ja_text": "料理人がラーメンを作る",
+      "en_text": "a chef cooking a bowl of ramen",
+      "en_swapped_text": "a bowl of ramen cooking a chef",
+      "reversible": false,
+      "homonym": null,
+      "seed": 1742,
+      "clip": {
+        "ja": {
+          "to_normal": 0.321,
+          "to_swapped": 0.3213,
+          "margin": -0.0002
+        },
+        "en": {
+          "to_normal": 0.3112,
+          "to_swapped": 0.3171,
+          "margin": -0.0059
+        }
+      },
+      "files": [
+        "17_ja.png",
+        "17_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A chef in a white uniform carefully lifts steaming noodles from a bowl with a pair of tongs."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A chef in a white uniform skillfully lifts steaming ramen noodles with chopsticks from a bowl held in their other hand."
+        }
+      },
+      "text_artifact": {
+        "ja": true,
+        "en": false
+      }
+    },
+    {
+      "index": 18,
+      "ja_text": "熊がはちみつをなめる",
+      "en_text": "a bear licking honey",
+      "en_swapped_text": "honey licking a bear",
+      "reversible": false,
+      "homonym": null,
+      "seed": 1842,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3313,
+          "to_swapped": 0.285,
+          "margin": 0.0463
+        },
+        "en": {
+          "to_normal": 0.3156,
+          "to_swapped": 0.2884,
+          "margin": 0.0272
+        }
+      },
+      "files": [
+        "18_ja.png",
+        "18_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A brown bear is licking honey from a jar, with a stream of golden honey dripping from its mouth."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A close-up of a brown bear licking its paw while holding a piece of food."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 19,
+      "ja_text": "消防士がはしごを登る",
+      "en_text": "a firefighter climbing a ladder",
+      "en_swapped_text": "a ladder climbing a firefighter",
+      "reversible": false,
+      "homonym": null,
+      "seed": 1942,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3446,
+          "to_swapped": 0.3432,
+          "margin": 0.0014
+        },
+        "en": {
+          "to_normal": 0.3373,
+          "to_swapped": 0.3385,
+          "margin": -0.0012
+        }
+      },
+      "files": [
+        "19_ja.png",
+        "19_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": false,
+          "whole": false,
+          "caption": "A firefighter in full gear is suspended from a ladder truck against a clear blue sky, holding equipment."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A firefighter in full gear climbs a ladder against a concrete wall under a clear blue sky."
+        }
+      },
+      "text_artifact": {
+        "ja": true,
+        "en": true
+      }
+    },
+    {
+      "index": 20,
+      "ja_text": "赤ちゃんが積み木を積む",
+      "en_text": "a baby stacking wooden blocks",
+      "en_swapped_text": "wooden blocks stacking a baby",
+      "reversible": false,
+      "homonym": null,
+      "seed": 2042,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3596,
+          "to_swapped": 0.3409,
+          "margin": 0.0187
+        },
+        "en": {
+          "to_normal": 0.3466,
+          "to_swapped": 0.337,
+          "margin": 0.0096
+        }
+      },
+      "files": [
+        "20_ja.png",
+        "20_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A baby sits on a carpet, intently stacking wooden blocks into a tower."
+        },
+        "en": {
+          "subject": false,
+          "object": true,
+          "whole": false,
+          "caption": "A stack of five wooden cubes stands upright on a white surface, with two additional cubes placed beside it."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 21,
+      "ja_text": "侍が刀を抜く",
+      "en_text": "a samurai drawing a sword",
+      "en_swapped_text": "a sword drawing a samurai",
+      "reversible": false,
+      "homonym": null,
+      "seed": 2142,
+      "clip": {
+        "ja": {
+          "to_normal": 0.2997,
+          "to_swapped": 0.2956,
+          "margin": 0.0041
+        },
+        "en": {
+          "to_normal": 0.3245,
+          "to_swapped": 0.3155,
+          "margin": 0.0089
+        }
+      },
+      "files": [
+        "21_ja.png",
+        "21_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A samurai in traditional dark blue attire practices swordsmanship in a gravel courtyard, with another person observing in the background."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A black and white illustration of a samurai warrior in full armor, poised in a combat stance with a sword drawn."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 22,
+      "ja_text": "おばあさんが傘をさす",
+      "en_text": "an old woman holding up an umbrella",
+      "en_swapped_text": "an umbrella holding up an old woman",
+      "reversible": false,
+      "homonym": null,
+      "seed": 2242,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3341,
+          "to_swapped": 0.3379,
+          "margin": -0.0038
+        },
+        "en": {
+          "to_normal": 0.3404,
+          "to_swapped": 0.3422,
+          "margin": -0.0018
+        }
+      },
+      "files": [
+        "22_ja.png",
+        "22_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "An elderly woman with gray hair smiles gently while holding a black umbrella with a wooden handle on a rainy day."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "An elderly woman with a gentle smile holds a black umbrella, standing outdoors in a softly blurred natural setting."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 23,
+      "ja_text": "学生が自転車を押す",
+      "en_text": "a student pushing a bicycle",
+      "en_swapped_text": "a bicycle pushing a student",
+      "reversible": false,
+      "homonym": null,
+      "seed": 2342,
+      "clip": {
+        "ja": {
+          "to_normal": 0.326,
+          "to_swapped": 0.3254,
+          "margin": 0.0006
+        },
+        "en": {
+          "to_normal": 0.3309,
+          "to_swapped": 0.3284,
+          "margin": 0.0025
+        }
+      },
+      "files": [
+        "23_ja.png",
+        "23_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A young boy in a school uniform rides a pink bicycle on a paved path through a green park."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A schoolgirl in a white uniform rides a cream-colored bicycle with a basket through a park-like setting."
+        }
+      },
+      "text_artifact": {
+        "ja": true,
+        "en": false
+      }
+    },
+    {
+      "index": 24,
+      "ja_text": "男性が橋を渡る",
+      "en_text": "a man crossing a bridge",
+      "en_swapped_text": "a bridge crossing a man",
+      "reversible": false,
+      "homonym": "橋/箸",
+      "seed": 2442,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3026,
+          "to_swapped": 0.2977,
+          "margin": 0.0049
+        },
+        "en": {
+          "to_normal": 0.2886,
+          "to_swapped": 0.2812,
+          "margin": 0.0075
+        }
+      },
+      "files": [
+        "24_ja.png",
+        "24_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A person with a backpack walks away on a bridge under a cloudy sky, with houses and distant mountains in the background."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A man walks alone across a modern bridge on an overcast day."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 25,
+      "ja_text": "女性が箸を持つ",
+      "en_text": "a woman holding chopsticks",
+      "en_swapped_text": "chopsticks holding a woman",
+      "reversible": false,
+      "homonym": "箸/橋",
+      "seed": 2542,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3209,
+          "to_swapped": 0.3088,
+          "margin": 0.0121
+        },
+        "en": {
+          "to_normal": 0.349,
+          "to_swapped": 0.3444,
+          "margin": 0.0047
+        }
+      },
+      "files": [
+        "25_ja.png",
+        "25_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": false,
+          "object": true,
+          "whole": true,
+          "caption": "A person uses chopsticks to pick up a piece of green vegetable from a small white bowl on a wooden table."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A person holds wooden chopsticks with a small orange food item balanced on the tips."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 26,
+      "ja_text": "子どもが紙を折る",
+      "en_text": "a child folding a sheet of paper",
+      "en_swapped_text": "a sheet of paper folding a child",
+      "reversible": false,
+      "homonym": "紙/神",
+      "seed": 2642,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3386,
+          "to_swapped": 0.3304,
+          "margin": 0.0082
+        },
+        "en": {
+          "to_normal": 0.3299,
+          "to_swapped": 0.303,
+          "margin": 0.0269
+        }
+      },
+      "files": [
+        "26_ja.png",
+        "26_en.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A child is focused on folding a light blue piece of paper into a triangle at a wooden table."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A child sits at a wooden table, holding a blank sheet of paper, seemingly contemplating what to write."
+        }
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    },
+    {
+      "index": 27,
+      "ja_text": "少年が亀を追いかける",
+      "en_text": "a boy chasing a turtle",
+      "en_swapped_text": "a turtle chasing a boy",
+      "reversible": true,
+      "homonym": "亀/瓶",
+      "seed": 2742,
+      "clip": {
+        "ja": {
+          "to_normal": 0.3612,
+          "to_swapped": 0.3457,
+          "margin": 0.0156
+        },
+        "en": {
+          "to_normal": 0.3549,
+          "to_swapped": 0.3465,
+          "margin": 0.0084
+        },
+        "en_swapped": {
+          "to_normal": 0.3519,
+          "to_swapped": 0.3372,
+          "margin": 0.0146
+        }
+      },
+      "files": [
+        "27_ja.png",
+        "27_en.png",
+        "27_en_swapped.png"
+      ],
+      "vlm_presence": {
+        "ja": {
+          "subject": true,
+          "object": true,
+          "whole": false,
+          "caption": "A cheerful boy rides atop a large turtle across a sunny, grassy field."
+        },
+        "en": {
+          "subject": true,
+          "object": true,
+          "whole": true,
+          "caption": "A joyful young boy runs playfully past a slow-moving turtle on a sunny outdoor path."
+        }
+      },
+      "vlm_roles": {
+        "en": {
+          "picked": "normal",
+          "normal_shown_first": true
+        },
+        "en_swapped": {
+          "picked": "normal",
+          "normal_shown_first": true
+        },
+        "verdict": "not_distinguished"
+      },
+      "role_probe": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": true
+      },
+      "role_probe_control": {
+        "verdict": "swapped",
+        "raw": "SWAPPED",
+        "normal_shown_first": true
+      },
+      "text_artifact": {
+        "ja": false,
+        "en": false
+      }
+    }
+  ],
+  "vlm_summary": {
+    "E2_role_verdicts": {
+      "not_distinguished": 12,
+      "distinguished_correct": 1
+    },
+    "E2_reversible_count": 13,
+    "E4_presence_rate": {
+      "ja": {
+        "subject": 0.893,
+        "object": 0.893,
+        "whole": 0.429
+      },
+      "en": {
+        "subject": 0.964,
+        "object": 0.964,
+        "whole": 0.679
+      }
+    }
+  },
+  "vlm_model": "Qwen/Qwen3-VL-8B-Instruct",
+  "role_probe_summary": {
+    "swapped": 11,
+    "same": 2,
+    "undetermined": 0
+  },
+  "role_probe_control_summary": {
+    "swapped": 10,
+    "same": 3,
+    "undetermined": 0
+  },
+  "text_artifact_summary": {
+    "ja": {
+      "with_text": 6,
+      "total": 28,
+      "rate": 0.214
+    },
+    "en": {
+      "with_text": 3,
+      "total": 28,
+      "rate": 0.107
+    }
+  }
+}

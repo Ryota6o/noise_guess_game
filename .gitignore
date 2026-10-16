@@ -27,6 +27,7 @@ checkpoints/
 experiments/**/raw/
 experiments/**/out/
 experiments/**/frames/
+experiments/**/images/
 experiments/**/sheet_*.png
 *.mp4
 
