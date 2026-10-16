@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.ipynb_checkpoints/
+
+# 環境変数・資格情報
+.env
+.env.*
+!.env.example
+
+# モデルの重み(Hugging Face から取得するものはコミットしない)
+*.safetensors
+*.ckpt
+*.bin
+*.pt
+*.pth
+models/
+checkpoints/
+
+# 検証の生成物
+# experiments/ 配下のスクリプトと集計結果はコミットする。
+# 大量に出る生の生成画像・動画だけを除外する。
+experiments/**/raw/
+experiments/**/out/
+*.mp4
+
+# Node(web/ を作ってから使う)
+node_modules/
+dist/
+.next/
+
+# OS / エディタ
+.DS_Store
+*.swp
