@@ -88,6 +88,20 @@ class Precheck:
     margin_threshold_subject: float = 0.0
     margin_threshold_object: float = 0.0
     retry_limit: int = 1                     # 【現行案】やり直しは1回まで
+
+    # 差し替えの対象にするスロット【現行案 2026-10-16】。
+    # 3スロット全部を条件にすると、個々が89%・100%・89%でも**全部通るのは79%**になり、
+    # 5問に1問で差し替えが起きる。しかも落ちた件の多くは誤判定で、
+    # 「男性が犬を洗う」は男性が写っているのにCLIPが farmer を選んで落ちた。
+    #
+    # **述語を外すと21%→11%に半減する。** 動詞の判定は特に誤りやすく、
+    # 述語の担当者だけが不利になる(計画書 §7 のリスク表)。
+    # 述語のVLM判定は記録だけ残し、差し替えには使わない。
+    substitute_slots: tuple[str, ...] = ("subject", "object")
+
+    # 事前チェックそのものを止める逃げ道。**既定では止めない。**
+    # 止めると「絵に出ない語を入れた人が有利」なゲームになる(計画書 §3.4)。
+    enabled: bool = True
     skip_vlm_when_over_budget: bool = True   # 【現行案】CLIPチェックは省略しない
 
 

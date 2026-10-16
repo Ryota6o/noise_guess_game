@@ -301,7 +301,12 @@ class TurnPreparer:
                                 "picked": None}
             timings["precheck"] = round(time.perf_counter() - t0, 3)
 
-            failed_slots = [s for s, r in checks.items() if not r["passed"]]
+            # 差し替えの対象にするのは設定で決めたスロットだけ。
+            # 述語のVLM判定は既定では記録のみで、差し替えには使わない(config.py 参照)。
+            failed_slots = [s for s, r in checks.items()
+                            if not r["passed"] and s in self.config.precheck.substitute_slots]
+            if not self.config.precheck.enabled:
+                failed_slots = []
             if not failed_slots or attempt == self.config.precheck.retry_limit:
                 frames = self.build_frames(image, seed)
                 timings["total"] = round(time.perf_counter() - t_start, 3)

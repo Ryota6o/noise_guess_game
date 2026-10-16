@@ -177,3 +177,66 @@ def test_the_answer_is_never_sent_to_the_client_before_the_result():
         for slot, hidden in msg["hint_hide"].items():
             shown = {o["ja"] for o in msg["choices"][slot]}
             assert set(hidden) <= shown and len(hidden) <= 1
+
+
+def test_restart_clears_the_score_and_starts_over():
+    """ゲームの途中でも最初からやり直せる。得点は消える。"""
+    async def scenario(port: int) -> dict:
+        uri = f"ws://127.0.0.1:{port}/ws/restartroom/"
+        conns = {n: await websockets.connect(uri + n) for n in NAMES}
+        try:
+            # 1ターン遊んで、誰かに点を入れる
+            ready = {}
+            for name, ws in conns.items():
+                await recv_until(ws, "input_start")
+                await ws.send(json.dumps({"type": "input", "word": f"{name}の語"}))
+            for name, ws in conns.items():
+                ready[name] = await recv_until(ws, "answer_ready")
+            first = sorted(ready)[0]
+            msg = ready[first]
+            picks = {s: next(o["ja"] for o in msg["choices"][s] if "_ダミー" not in o["ja"])
+                     for s in msg["answer_slots"]}
+            await conns[first].send(json.dumps({"type": "answer", "picks": picks}))
+            before = await recv_until(conns[NAMES[0]], "turn_result")
+
+            # やり直す
+            await conns[NAMES[0]].send(json.dumps({"type": "restart"}))
+            await recv_until(conns[NAMES[0]], "restarted")
+
+            # 新しいターンが始まり、得点は0に戻っている
+            for name, ws in conns.items():
+                await recv_until(ws, "input_start")
+                await ws.send(json.dumps({"type": "input", "word": f"{name}の新しい語"}))
+            after_ready = {}
+            for name, ws in conns.items():
+                after_ready[name] = await recv_until(ws, "answer_ready")
+            f2 = sorted(after_ready)[0]
+            m2 = after_ready[f2]
+            picks2 = {s: next(o["ja"] for o in m2["choices"][s] if "_ダミー" not in o["ja"])
+                      for s in m2["answer_slots"]}
+            await conns[f2].send(json.dumps({"type": "answer", "picks": picks2}))
+            after = await recv_until(conns[NAMES[0]], "turn_result")
+            return {"before": before, "after": after}
+        finally:
+            for ws in conns.values():
+                await ws.close()
+
+    with ServerThread(TEST_CONFIG) as srv:
+        out = asyncio.run(scenario(srv.port))
+
+    assert sum(out["before"]["points"].values()) == 1
+    # やり直したあとの最初のターンなので、合計は1点(前の点は消えている)
+    assert sum(out["after"]["points"].values()) == 1
+    # ターン番号も0に戻る(新しいゲームなので)
+    assert out["after"]["turn"] == 0 and out["before"]["turn"] == 0
+    # 出題は新しくなっている
+    assert out["after"]["words"] != out["before"]["words"]
+
+
+def test_turn_result_says_who_had_which_slot():
+    """結果にスロットの担当が入る(テロップで「自分の担当」を出すため)。"""
+    with ServerThread(TEST_CONFIG) as srv:
+        out = asyncio.run(play_one_turn(srv.port))
+    assignments = out["result"]["assignments"]
+    assert sorted(assignments) == sorted(NAMES)
+    assert sorted(assignments.values()) == ["object", "predicate", "subject"]

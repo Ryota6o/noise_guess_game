@@ -50,6 +50,17 @@
   .choices button.picked { background: var(--accent); color: #0b1016; font-weight: 700; }
   .choices button.dimmed { opacity: .28; text-decoration: line-through; color: var(--dim); }
   .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  /* 「だれが・なにを・どうした」のテロップ。自分の担当がひと目で分かるようにする */
+  .telop { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px; }
+  .telop div { background: var(--panel); border: 1px solid var(--line);
+               border-radius: 10px; padding: 6px 8px; text-align: center; }
+  .telop .mine { border-color: var(--accent); background: #1d2838; }
+  .telop b { display: block; font-size: 11px; color: var(--muted); font-weight: 600; }
+  .telop span { font-size: 15px; font-weight: 700; }
+  .telop .mine span { color: var(--accent); }
+  .telop .unknown span { color: var(--dim); }
+  .restart { background: transparent; border: 1px solid var(--line);
+             color: var(--muted); width: 100%; margin-top: 10px; }
   .big { font-size: 22px; font-weight: 700; }
   .ok { color: var(--ok); } .ng { color: var(--ng); }
   .muted { color: var(--muted); font-size: 13px; }
@@ -84,6 +95,7 @@
 </div>
 
 <div id="answer" class="screen">
+  <div class="telop" id="telopAnswer"></div>
   <img id="frame" alt="">
   <div class="timer" style="margin:8px 0"><i id="answerBar"></i></div>
   <div id="slots"></div>
@@ -92,11 +104,13 @@
 </div>
 
 <div id="result" class="screen">
+  <div class="telop" id="telopResult"></div>
   <div class="panel">
     <div class="big" id="resultTitle"></div>
     <div id="resultWords" style="margin-top:8px"></div>
     <div class="muted" id="resultPoints" style="margin-top:8px"></div>
   </div>
+  <button class="restart" id="restart">最初からやり直す</button>
 </div>
 
 <script>
@@ -155,6 +169,21 @@ $("word").addEventListener("keydown", (e) => { if (e.key === "Enter") sendWord()
 
 let picks = {};
 let locked = false;
+// 自分の担当スロットと、自分が入れた語。テロップに出す
+let mySlot = null, myWord = null;
+const SLOT_ORDER = ["subject", "object", "predicate"];
+const SLOT_NAMES = { subject: "だれが", object: "なにを", predicate: "どうした" };
+
+/** 「だれが・なにを・どうした」を常に出す。自分の担当は色を変えて語も見せる。 */
+function renderTelop(el, words) {
+  el.innerHTML = SLOT_ORDER.map(slot => {
+    const known = words ? words[slot] : (slot === mySlot ? myWord : null);
+    const mine = slot === mySlot;
+    const cls = mine ? "mine" : (known ? "" : "unknown");
+    const label = SLOT_NAMES[slot] + (mine ? "(自分)" : "");
+    return `<div class="${cls}"><b>${label}</b><span>${known || "?"}</span></div>`;
+  }).join("");
+}
 
 function buildChoices(msg) {
   picks = {}; locked = false;
@@ -206,13 +235,20 @@ ws.onmessage = (ev) => {
       show("lobby");
       break;
 
+    case "restarted":
+      $("status").textContent = "最初からやり直します";
+      picks = {}; locked = false; mySlot = null; myWord = null;
+      break;
+
     case "round_start":
       $("status").textContent = `ラウンド ${m.round} / ${m.of}`;
       break;
 
     case "input_start": {
       clearTimers();
+      mySlot = m.slot; myWord = null;
       $("slotLabel").textContent = m.slot_label;
+      renderTelop($("telopAnswer"), null);
       $("word").value = ""; $("word").disabled = false;
       $("sendWord").disabled = false;
       $("drawWarn").hidden = true;
@@ -224,6 +260,7 @@ ws.onmessage = (ev) => {
     }
 
     case "input_accepted":
+      myWord = m.word;
       $("status").textContent = "他の人を待っています…";
       break;
 
@@ -254,6 +291,7 @@ ws.onmessage = (ev) => {
         img.src = "data:image/jpeg;base64," + b64;
         return img;
       });
+      renderTelop($("telopAnswer"), null);
       const start = toLocal(m.answer_start_at);
       at(start, () => {
         show("answer");
@@ -297,6 +335,7 @@ ws.onmessage = (ev) => {
       break;
 
     case "turn_void":
+      renderTelop($("telopResult"), null);
       $("resultTitle").textContent = "このターンは無効です";
       $("resultWords").textContent = m.reason;
       $("resultPoints").textContent = "やり直します";
@@ -311,6 +350,7 @@ ws.onmessage = (ev) => {
       $("resultWords").innerHTML =
         `<div class="big">${w.subject}が ${w.object}を ${w.predicate}</div>` +
         `<div class="muted">${m.prompt_en}</div>`;
+      renderTelop($("telopResult"), w);
       $("resultPoints").textContent =
         Object.entries(m.points).map(([p, v]) => `${p}: ${v}点`).join(" / ");
       show("result");
@@ -336,6 +376,11 @@ ws.onmessage = (ev) => {
       break;
   }
 };
+
+$("restart").addEventListener("click", () => {
+  if (!confirm("最初からやり直しますか?(得点はすべて消えます)")) return;
+  ws.send(JSON.stringify({ type: "restart" }));
+});
 
 ws.onclose = () => { $("status").textContent = "接続が切れました"; };
 ws.onerror = () => { $("status").textContent = "接続エラー"; };

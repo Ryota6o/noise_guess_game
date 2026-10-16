@@ -54,6 +54,7 @@ class Room:
     players: dict[str, Player] = field(default_factory=dict)
     game: Game | None = None
     started: bool = False
+    task: Any = None          # 進行中の run_game。リスタート時に止める
 
     def order(self) -> list[str]:
         return list(self.players)
@@ -195,6 +196,7 @@ class Server:
         # --- 結果表示 ---
         await self.broadcast(room, {
             "type": "turn_result", "turn": turn.index,
+            "assignments": {pid: turn.slot_of(pid) for pid in room.players},
             "words": assets.words_ja, "prompt_en": assets.prompt_en,
             "winner": turn.winner, "outcome": turn.outcome.value,
             "points": game.current_round.points(),
@@ -234,6 +236,23 @@ class Server:
                 "round_wins": dict(game.round_wins)})
         await self.broadcast(room, {"type": "game_end", **game.result()})
 
+    async def restart(self, room: Room) -> None:
+        """ゲームを最初からやり直す。進行中のターンは打ち切る。
+
+        得点・ラウンド勝利数・語の再利用の記録・差し替え回数を、すべて初期化する。
+        """
+        if room.task is not None and not room.task.done():
+            room.task.cancel()
+            try:
+                await room.task
+            except asyncio.CancelledError:
+                pass
+        for player in room.players.values():
+            player.pending_input = None
+        room.game = Game(room.order(), room.rounds, self.config)
+        await self.broadcast(room, {"type": "restarted"})
+        room.task = asyncio.create_task(self.run_game(room))
+
     # ----- 受信 -----
 
     async def handle(self, room: Room, player: Player, message: dict) -> None:
@@ -248,6 +267,9 @@ class Server:
                 return
             player.pending_input = word
             await self.send(player, {"type": "input_accepted", "word": word})
+
+        elif kind == "restart":
+            await self.restart(room)
 
         elif kind == "answer":
             game = room.game
@@ -310,7 +332,7 @@ def create_app(preparer: Any | None = None, config: Config = DEFAULT) -> FastAPI
         if len(room.players) == n and not room.started:
             room.started = True
             room.game = Game(room.order(), room.rounds, config)
-            asyncio.create_task(server.run_game(room))
+            room.task = asyncio.create_task(server.run_game(room))
 
         try:
             while True:
