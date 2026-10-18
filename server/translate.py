@@ -73,8 +73,18 @@ SYSTEM = (
     "predicate ('committing seppuku' for 切腹). Keep these short - they are used to check "
     "the picture, not to draw it.\n"
     "\n"
+    "\n"
+    "If the user asks for decoys for a slot, add a \"dummies\" object. For each slot "
+    "listed, give exactly three wrong answers that a player might plausibly have typed, "
+    "in the SAME grammatical shape as the real one: if the real answer is 公園で, the "
+    "decoys must also end in で; if it is 胃袋を出して, they must also be ～て clauses. "
+    "Order them from closest in meaning to furthest. They must be clearly wrong - never "
+    "a synonym of the real answer - and each needs a short English label too.\n"
+    "\n"
     "Reply with JSON only, no explanation, in exactly this form:\n"
-    '{"subject": "", "object": "", "predicate": "", "sentence": "", "sentence_ja": ""}\n'
+    '{"subject": "", "object": "", "predicate": "", "sentence": "", "sentence_ja": "", '
+    '"dummies": {"<slot>": [{"ja": "", "en": ""}, {"ja": "", "en": ""}, '
+    '{"ja": "", "en": ""}]}}\n'
     "where subject/object/predicate are the short English labels from rule 9, "
     "sentence is the descriptive English prompt, and sentence_ja is the natural "
     "Japanese sentence made from the three words exactly as the players typed them."
@@ -89,7 +99,10 @@ class Translation:
     # プレイヤーに見せる日本語の文。助詞を機械的に貼ると
     # 「バナナでを切腹する」のように壊れるので、LLM に組み立てさせる。
     sentence_ja: str
-    ok: bool                       # 3スロットすべて訳せたか
+    # 形を揃えたダミー。slot -> [{"ja":…, "en":…}, …]。
+    # 必要なスロットだけ LLM に作らせる(裸の名詞ならプールで足りる)。
+    dummies: dict[str, list[dict]] = field(default_factory=dict)
+    ok: bool = True                # 3スロットすべて訳せたか
     failed_slots: set[str] = field(default_factory=set)
     raw: str = ""
     seconds: float = 0.0
@@ -98,31 +111,78 @@ class Translation:
 # 入力に無いのに英文へ紛れ込みやすい語。実測(2026-10-18)で、
 # 「侍 / 腸をだしながら / 笑う」に対して LLM が繰り返し "a child's intestines" を出した。
 # 指示で禁じても止まらなかったため、コード側で検査する。
-UNINVITED_PEOPLE = ("child", "kid", "baby", "infant", "toddler", "girl", "boy")
+UNINVITED_PEOPLE = ("child", "kid", "infant", "toddler")
 # 上の語が入力側にあれば、英文に出てきても問題ない
 JA_PEOPLE_HINTS = ("子", "赤ちゃん", "少年", "少女", "幼", "ベビー", "キッズ")
+# 子供の混入が問題になるのは、残酷な場面に巻き込まれるときだけ。
+# これを見ずに人物語だけで判定すると、「父がミルクを飲んだ」の baby bottle や
+# 「女」の girl にも誤爆し、作り直しが走って翻訳が倍の時間になった(2026-10-18)。
+GORE_TERMS = ("intestine", "blood", "bleed", "wound", "gore", "stab", "kill",
+              "corpse", "dismember", "sever", "mutilat", "disembowel")
 
 
 def has_uninvited_person(sentence: str, words_ja: dict[str, str]) -> str | None:
-    """入力に無い人物(特に子供)が英文に紛れていないか。混入していればその語を返す。"""
+    """入力に無い子供が、残酷な場面に紛れ込んでいないか。あればその語を返す。"""
     joined_ja = "".join(words_ja.values())
     if any(h in joined_ja for h in JA_PEOPLE_HINTS):
         return None
     lowered = sentence.lower()
+    if not any(g in lowered for g in GORE_TERMS):
+        return None
     for term in UNINVITED_PEOPLE:
         if re.search(rf"\b{term}'?s?\b", lowered):
             return term
     return None
 
 
+# 助詞や活用で終わる語。プールの裸の名詞(りんご・傘)と並べると、
+# 形だけで正解が分かってしまう。実測(2026-10-18):
+#   「公園で」-> ['橋', '公園で', 'ラーメン', '自転車'] と出て、絵を見ずに選べた。
+TRAILING_PARTICLES = "をにでとへやもはがよりからまで"
+
+
+def needs_matched_dummies(word: str) -> bool:
+    """この語はプールの裸の名詞と形が揃わないか。揃わないならLLMにダミーを作らせる。"""
+    if not word:
+        return False
+    if word[-1] in TRAILING_PARTICLES:
+        return True
+    # 「〜して」「〜しながら」のような節、あるいは単に長いもの
+    return word.endswith(("て", "で", "ながら", "つつ")) or len(word) >= 6
+
+
 def _extract_json(text: str) -> dict | None:
-    m = re.search(r"\{.*?\}", text, re.DOTALL)
-    if not m:
+    r"""最初の { から、対応する } までを取り出す。
+
+    非貪欲の正規表現(`\{.*?\}`)は使えない。入れ子の "dummies" を足した途端に
+    最初の } で切れて壊れたJSONになり、翻訳が丸ごと失敗した(2026-10-18)。
+    """
+    start = text.find("{")
+    if start < 0:
         return None
-    try:
-        return json.loads(m.group(0))
-    except json.JSONDecodeError:
-        return None
+    depth, in_string, escaped = 0, False, False
+    for i in range(start, len(text)):
+        c = text[i]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif c == "\\":
+                escaped = True
+            elif c == '"':
+                in_string = False
+            continue
+        if c == '"':
+            in_string = True
+        elif c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0:
+                try:
+                    return json.loads(text[start:i + 1])
+                except json.JSONDecodeError:
+                    return None
+    return None
 
 
 class Translator:
@@ -133,7 +193,7 @@ class Translator:
         # 辞書引きの控え。LLM が壊れた出力を返したときだけ使う。
         self.fallback = fallback or {}
 
-    def _generate(self, user: str, max_new_tokens: int = 200) -> str:
+    def _generate(self, user: str, max_new_tokens: int = 420) -> str:
         messages = [{"role": "system", "content": [{"type": "text", "text": SYSTEM}]},
                     {"role": "user", "content": [{"type": "text", "text": user}]}]
         inputs = self.proc.apply_chat_template(
@@ -151,6 +211,11 @@ class Translator:
         user = (f"subject (だれが): {words_ja['subject']}\n"
                 f"object (なにを): {words_ja['object']}\n"
                 f"predicate (どうした): {words_ja['predicate']}")
+        # 形が揃わないスロットだけ、ダミーも作らせる。
+        want_dummies = [s for s in SLOTS if needs_matched_dummies(words_ja[s])]
+        if want_dummies:
+            user += ("\n\nAlso give three decoys for these slots, in the same "
+                     f"grammatical shape: {', '.join(want_dummies)}")
         t0 = time.perf_counter()
         raw = self._generate(user)
         intruder = has_uninvited_person(raw, words_ja)
@@ -190,6 +255,17 @@ class Translator:
             sentence = (f"{words_en['subject']} {words_en['predicate']} "
                         f"{words_en['object']}")
 
+        dummies: dict[str, list[dict]] = {}
+        for slot in want_dummies:
+            got = (data.get("dummies") or {}).get(slot) or []
+            clean = [{"ja": str(d.get("ja", "")).strip(),
+                      "en": str(d.get("en", "")).strip()}
+                     for d in got if isinstance(d, dict)]
+            clean = [d for d in clean
+                     if d["ja"] and d["en"] and d["ja"] != words_ja[slot]]
+            if len(clean) >= 3:
+                dummies[slot] = clean[:3]
+
         sentence_ja = str(data.get("sentence_ja", "")).strip()
         if not sentence_ja:
             # 最後の手段。助詞がすでに付いている語には を を足さない。
@@ -198,5 +274,5 @@ class Translator:
             sentence_ja = f"{words_ja['subject']}が{obj}{particle}{words_ja['predicate']}"
 
         return Translation(words_en=words_en, sentence=sentence, sentence_ja=sentence_ja,
-                           ok=not failed, failed_slots=failed, raw=raw,
-                           seconds=round(seconds, 3))
+                           dummies=dummies, ok=not failed, failed_slots=failed,
+                           raw=raw, seconds=round(seconds, 3))

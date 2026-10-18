@@ -209,10 +209,20 @@ class TurnPreparer:
         return options[letters.index(m.group(1))] if m else None
 
     def precheck(self, image: Image.Image, words_en: dict[str, str],
-                 choices: dict[str, list[dict]], skip_vlm: bool) -> dict[str, dict]:
+                 choices: dict[str, list[dict]], skip_vlm: bool,
+                 words_ja_raw: dict[str, str] | None = None) -> dict[str, dict]:
         """3語が絵に出ているかを、**実際に出す4択で**確かめる(E3の設計)。"""
+        from translate import needs_matched_dummies
+
         result: dict[str, dict] = {}
+        words_ja_raw = words_ja_raw or {}
         for slot in ("subject", "object"):
+            if needs_matched_dummies(words_ja_raw.get(slot, "")):
+                # 「胃袋を出して」「公園で」のような節・助詞つきは、CLIPのゼロショットでは
+                # 判定できない(画像の label として比較できる形ではない)。
+                # 無理に判定すると落ちて差し替えになり、入力が勝手に書き換わる。
+                result[slot] = {"method": "skipped-not-a-noun", "passed": True}
+                continue
             options = [o["en"] for o in choices[slot]]
             top, margin = self._clip_pick(image, options)
             threshold = (self.config.precheck.margin_threshold_subject if slot == "subject"
@@ -233,16 +243,35 @@ class TurnPreparer:
     # ----- 選択肢(RULES.md §5) -----
 
     def build_choices(self, words_ja: dict[str, str], words_en: dict[str, str],
-                      rng: random.Random) -> dict[str, list[dict]]:
+                      rng: random.Random,
+                      llm_dummies: dict[str, list[dict]] | None = None
+                      ) -> dict[str, list[dict]]:
+        """4択を作る。RULES.md §5。
+
+        プールの語は「りんご」「傘」のような裸の名詞しかないので、
+        入力が「公園で」や「胃袋を出して」だと**正解だけ形が違って一目で分かる**。
+        そういうスロットは LLM が形を揃えたダミーを返すので、そちらを使う。
+        """
         used_en: set[str] = set()
         choices: dict[str, list[dict]] = {}
         for slot in SLOTS:
-            category = CATEGORY_OF_SLOT[slot]
             correct = Word(words_ja[slot], words_en[slot])
-            # 主語と目的語に同じ語を並べない
-            q = self.picker.pick(category, correct, exclude_en=used_en, rng=rng)
-            used_en |= {o["en"] for o in q["options"]}
-            choices[slot] = q["options"]
+            from_llm = (llm_dummies or {}).get(slot)
+            if from_llm:
+                options = [{"ja": correct.ja, "en": correct.en,
+                            "role": "correct", "sim": 1.0}]
+                # LLM は「近い順」で返すので、そのまま近い/中/遠いに割り当てる
+                for d, role in zip(from_llm, ("near", "mid", "far")):
+                    options.append({"ja": d["ja"], "en": d["en"],
+                                    "role": role, "sim": None})
+                rng.shuffle(options)
+            else:
+                # 主語と目的語に同じ語を並べない
+                q = self.picker.pick(CATEGORY_OF_SLOT[slot], correct,
+                                     exclude_en=used_en, rng=rng)
+                options = q["options"]
+            used_en |= {o["en"] for o in options}
+            choices[slot] = options
         return choices
 
     # ----- フレーム(計画書 §3.2: 線形補間) -----
@@ -278,6 +307,7 @@ class TurnPreparer:
                 tr = self.translator.translate(words_ja)
                 words_en, prompt = tr.words_en, tr.sentence
                 sentence_ja = tr.sentence_ja
+                llm_dummies = tr.dummies
                 untranslated = set(tr.failed_slots)
                 timings["translate"] = tr.seconds
             else:
@@ -287,18 +317,21 @@ class TurnPreparer:
                 untranslated = {s for s, (_, ok) in pairs.items() if not ok}
                 prompt = self.build_prompt(words_en)
                 sentence_ja = "".join(words_ja[s] for s in SLOTS)
+                llm_dummies = {}
 
             t0 = time.perf_counter()
             image = self.generate(prompt, seed + attempt)
             timings["generate"] = round(time.perf_counter() - t0, 3)
 
-            choices = self.build_choices(words_ja, words_en, rng)
+            choices = self.build_choices(words_ja, words_en, rng,
+                                         llm_dummies=llm_dummies)
 
             elapsed = time.perf_counter() - t_start
             skip_vlm = (self.config.precheck.skip_vlm_when_over_budget
                         and elapsed > self.config.timing.prepare_budget_seconds * 0.6)
             t0 = time.perf_counter()
-            checks = self.precheck(image, words_en, choices, skip_vlm)
+            checks = self.precheck(image, words_en, choices, skip_vlm,
+                                   words_ja_raw=words_ja)
             # 訳せなかった語は、CLIPの判定を信用せず必ず落とす。
             # 日本語文字列どうしの照合は意味を持たないため。
             for slot in untranslated:
