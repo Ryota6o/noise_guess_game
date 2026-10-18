@@ -25,16 +25,29 @@ import torch
 from rules import SLOTS
 
 SYSTEM = (
-    "You translate three Japanese words into English for an image generation prompt. "
+    "You turn three Japanese words into an English prompt for an image generator. "
     "The words fill three slots: subject (who), object (what), predicate (did what). "
-    "Use the other two words as context to resolve homonyms "
-    "(for example 橋 bridge vs 箸 chopsticks, 紙 paper vs 神 god). "
-    "Write the subject and object as short noun phrases with an article, like 'a dog'. "
-    "Write the predicate as a present participle, like 'chasing'. "
-    "Then write one short sentence of the form '<subject> <predicate> <object>'. "
-    "Reply with JSON only, no explanation, in exactly this form: "
-    '{"subject": "", "object": "", "predicate": "", "sentence": ""}'
+    "\n\n"
+    "Rules:\n"
+    "1. Never translate character by character. 金棒 is a kanabo, a heavy spiked iron club "
+    "carried by an oni - it is not a 'gold rod'. 鬼 is a Japanese oni, a horned ogre with "
+    "red or blue skin - it is not a 'ghost'.\n"
+    "2. When a word names something specific to Japan that an English speaker would not "
+    "picture correctly, keep its name and add a short visual description: "
+    "'a Japanese oni, a red-skinned horned ogre in a tiger-skin loincloth'.\n"
+    "3. Use the other two words as context to resolve homonyms "
+    "(橋 bridge vs 箸 chopsticks, 紙 paper vs 神 god).\n"
+    "4. For each slot also give a short plain label: a noun phrase with an article for "
+    "subject and object ('a dog'), a present participle for the predicate ('chasing').\n"
+    "5. The sentence must describe one scene, using the descriptions from rule 2, "
+    "and must show the subject doing the action to the object.\n"
+    "\n"
+    "Reply with JSON only, no explanation, in exactly this form:\n"
+    '{"subject": "", "object": "", "predicate": "", "sentence": ""}\n'
+    "where subject/object/predicate are the short labels from rule 4, "
+    "and sentence is the descriptive prompt from rule 5."
 )
+
 
 
 @dataclass
@@ -65,7 +78,7 @@ class Translator:
         # 辞書引きの控え。LLM が壊れた出力を返したときだけ使う。
         self.fallback = fallback or {}
 
-    def _generate(self, user: str, max_new_tokens: int = 120) -> str:
+    def _generate(self, user: str, max_new_tokens: int = 220) -> str:
         messages = [{"role": "system", "content": [{"type": "text", "text": SYSTEM}]},
                     {"role": "user", "content": [{"type": "text", "text": user}]}]
         inputs = self.proc.apply_chat_template(

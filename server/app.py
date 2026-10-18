@@ -18,9 +18,11 @@
 from __future__ import annotations
 
 import asyncio
+import base64
 import json
 import sys
 from contextlib import asynccontextmanager
+from datetime import datetime
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -35,6 +37,10 @@ from rules import SLOTS, SLOT_LABELS, Game, RuleError, TurnOutcome  # noqa: E402
 
 # 回答開始までの先読み猶予。フレームを各端末に読み込ませてから一斉に始める。
 PRELOAD_GRACE_SECONDS = 0.8
+
+# 実際のプレイを1ターンずつ残す置き場。
+# これが無いと「精度が悪い」の原因(生成・判定・選択肢のどれか)を切り分けられない。
+LOG_DIR = Path(__file__).parents[1] / "logs" 
 
 
 @dataclass
@@ -155,6 +161,8 @@ class Server:
             turn.outcome = TurnOutcome.VOID
             return
 
+        self.log_turn(room, turn, assets)
+
         # 差し替えが起きた語の入力者に、減点を記録する(RULES.md §6)
         for slot in assets.substituted:
             owner = next(pid for pid in room.players if turn.slot_of(pid) == slot)
@@ -202,6 +210,38 @@ class Server:
             "points": game.current_round.points(),
             "server_now": self.now(), "seconds": t.result_seconds})
         await asyncio.sleep(t.result_seconds)
+
+    @staticmethod
+    def log_turn(room: Room, turn, assets) -> None:
+        """1ターンの内訳を残す。入力語・英訳・判定・差し替えと、最終画像。
+
+        「絵が語と合っていない」「判定が誤る」「選択肢が変」のどれなのかは、
+        記録が無いと切り分けられない(2026-10-18に実際に行き詰まった)。
+        """
+        try:
+            stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+            images = LOG_DIR / "images"
+            images.mkdir(parents=True, exist_ok=True)
+            name = f"{stamp}_{room.code}_t{turn.index:02d}"
+            # 最後のフレームが最終画像(α=1.0)
+            (images / f"{name}.jpg").write_bytes(
+                base64.b64decode(assets.frames_jpeg_b64[-1]))
+            record = {
+                "at": datetime.now().isoformat(timespec="seconds"),
+                "room": room.code, "turn": turn.index, "image": f"images/{name}.jpg",
+                "assignments": {pid: turn.slot_of(pid) for pid in room.players},
+                "words_ja": assets.words_ja, "words_en": assets.words_en,
+                "prompt_en": assets.prompt_en,
+                "precheck": assets.precheck, "substituted": assets.substituted,
+                "timings": assets.timings,
+                "choices": {s: [o["ja"] for o in opts]
+                            for s, opts in assets.choices.items()},
+                "timed_out": sorted(turn.timed_out),
+            }
+            with (LOG_DIR / "turns.jsonl").open("a", encoding="utf-8") as f:
+                f.write(json.dumps(record, ensure_ascii=False) + "\n")
+        except OSError as e:          # 記録に失敗してもゲームは止めない
+            print(f"[log] 記録できなかった: {e}", flush=True)
 
     def _autofill(self, room: Room, slot: str) -> str:
         """時間切れの人の語を、過去の入力プールから同カテゴリで補う(RULES.md §3.3)。"""
