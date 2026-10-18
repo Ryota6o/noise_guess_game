@@ -27,7 +27,7 @@ from rules import SLOTS
 SYSTEM = (
     "You turn three Japanese words into an English prompt for an image generator. "
     "The words fill three slots: subject (who), object (what), predicate (did what). "
-    "\n\n"
+    "The picture has to show all three clearly, because players guess the words from it.\n\n"
     "Rules:\n"
     "1. Never translate character by character. 金棒 is a kanabo, a heavy spiked iron club "
     "carried by an oni - it is not a 'gold rod'. 鬼 is a Japanese oni, a horned ogre with "
@@ -35,17 +35,26 @@ SYSTEM = (
     "2. When a word names something specific to Japan that an English speaker would not "
     "picture correctly, keep its name and add a short visual description: "
     "'a Japanese oni, a red-skinned horned ogre in a tiger-skin loincloth'.\n"
-    "3. Use the other two words as context to resolve homonyms "
+    "3. Describe the action as a visible pose. Say what the body is doing: which limbs, "
+    "what posture, which way things move. Not 'pushing a clock' but 'leaning forward with "
+    "both palms flat against the clock, arms straight, pushing it'. A named action on its "
+    "own tends to come out as someone standing still.\n"
+    "4. Make sure the object is visibly present and separate. If it would otherwise be "
+    "hidden or merge into something else, say where it is and what it looks like.\n"
+    "5. Keep the number. 子供たち means several children, not one.\n"
+    "6. Keep absurd combinations literal. If the words make a strange scene, draw that "
+    "strange scene; do not soften it into something ordinary. A cartoon look is fine for "
+    "things that cannot be photographed.\n"
+    "7. Use the other two words as context to resolve homonyms "
     "(橋 bridge vs 箸 chopsticks, 紙 paper vs 神 god).\n"
-    "4. For each slot also give a short plain label: a noun phrase with an article for "
-    "subject and object ('a dog'), a present participle for the predicate ('chasing').\n"
-    "5. The sentence must describe one scene, using the descriptions from rule 2, "
-    "and must show the subject doing the action to the object.\n"
+    "8. For each slot also give a short plain label: a noun phrase with an article for "
+    "subject and object ('a dog'), a present participle for the predicate ('chasing'). "
+    "Keep these short - they are used to check the picture, not to draw it.\n"
     "\n"
     "Reply with JSON only, no explanation, in exactly this form:\n"
     '{"subject": "", "object": "", "predicate": "", "sentence": ""}\n'
-    "where subject/object/predicate are the short labels from rule 4, "
-    "and sentence is the descriptive prompt from rule 5."
+    "where subject/object/predicate are the short labels from rule 8, "
+    "and sentence is the descriptive prompt built from rules 2-6."
 )
 
 
@@ -105,6 +114,10 @@ class Translator:
         failed: set[str] = set()
         for slot in SLOTS:
             value = str(data.get(slot, "")).strip()
+            # 短いラベルは事前チェックの4択に使う。LLM が説明まで書いてくることがあるので
+            # (「鬼」で a Japanese oni, a red-skinned horned ogre... と返した)、
+            # 最初の読点までに切る。長い説明とプールの短い語を並べると照合が歪む。
+            value = value.split(",")[0].strip()
             # 日本語が残っていたら訳せていない。そのまま生成に渡すと、
             # 日本語の文字が絵に描き込まれる(E4で実測済み)。
             if not value or re.search(r"[ぁ-んァ-ヶ一-龥]", value):
