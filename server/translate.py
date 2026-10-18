@@ -25,10 +25,20 @@ import torch
 from rules import SLOTS
 
 SYSTEM = (
-    "You turn three Japanese words into an English prompt for an image generator. "
+    "You turn three Japanese words into an English prompt for an image generator, "
+    "and into one natural Japanese sentence.\n"
     "The words fill three slots: subject (who), object (what), predicate (did what). "
     "The picture has to show all three clearly, because players guess the words from it.\n\n"
-    "Rules:\n"
+    "What players actually type:\n"
+    "- The object slot is NOT always a を-object. It may already carry its own particle "
+    "and play another role: 針で is an instrument, 公園で is a place, "
+    "腸をだしながら is a manner. Read the particle and use that role. "
+    "Never glue を onto something that already ends in a particle.\n"
+    "- The predicate slot may be a noun: 切腹 means committing seppuku. "
+    "Treat whatever is in that slot as the action.\n"
+    "- Build the Japanese sentence so it reads naturally with these parts as given. "
+    "Do not invent particles that break it.\n\n"
+    "Rules for the English prompt:\n"
     "1. Never translate character by character. 金棒 is a kanabo, a heavy spiked iron club "
     "carried by an oni - it is not a 'gold rod'. 鬼 is a Japanese oni, a horned ogre with "
     "red or blue skin - it is not a 'ghost'.\n"
@@ -41,20 +51,33 @@ SYSTEM = (
     "own tends to come out as someone standing still.\n"
     "4. Make sure the object is visibly present and separate. If it would otherwise be "
     "hidden or merge into something else, say where it is and what it looks like.\n"
-    "5. Keep the number. 子供たち means several children, not one.\n"
-    "6. Keep absurd combinations literal. If the words make a strange scene, draw that "
+    "5. If the object is the instrument of the action, it must be the ONLY instrument. "
+    "Say so explicitly: 'using a banana as the blade, no knife, no sword anywhere'. "
+    "Otherwise the model adds the tool the action normally needs.\n"
+    "6. Keep the number. 子供たち means several children, not one.\n"
+    "7. Keep absurd combinations literal. If the words make a strange scene, draw that "
     "strange scene; do not soften it into something ordinary. A cartoon look is fine for "
     "things that cannot be photographed.\n"
-    "7. Use the other two words as context to resolve homonyms "
+    "8. Use the other two words as context to resolve homonyms "
     "(橋 bridge vs 箸 chopsticks, 紙 paper vs 神 god).\n"
-    "8. For each slot also give a short plain label: a noun phrase with an article for "
-    "subject and object ('a dog'), a present participle for the predicate ('chasing'). "
-    "Keep these short - they are used to check the picture, not to draw it.\n"
+    "8b. The scene contains exactly the people and things named by the three words. "
+    "Never introduce anyone else. Never write 'a child', 'a kid' or 'a baby' unless one "
+    "of the three words says so. Any body part mentioned belongs to the subject.\n"
+    "8c. Do not add gore, wounds, blood or sexual content that the words do not already "
+    "state. This is a party game: keep the scene silly rather than graphic. If the words "
+    "are violent, show the pose and leave the injury out.\n"
+    "8d. Keep the English sentence under 40 words. Long prompts cost time and do not "
+    "improve the picture.\n"
+    "9. For each slot also give a short plain label in English: a noun phrase with an "
+    "article for subject and object ('a needle' for 針で), a present participle for the "
+    "predicate ('committing seppuku' for 切腹). Keep these short - they are used to check "
+    "the picture, not to draw it.\n"
     "\n"
     "Reply with JSON only, no explanation, in exactly this form:\n"
-    '{"subject": "", "object": "", "predicate": "", "sentence": ""}\n'
-    "where subject/object/predicate are the short labels from rule 8, "
-    "and sentence is the descriptive prompt built from rules 2-6."
+    '{"subject": "", "object": "", "predicate": "", "sentence": "", "sentence_ja": ""}\n'
+    "where subject/object/predicate are the short English labels from rule 9, "
+    "sentence is the descriptive English prompt, and sentence_ja is the natural "
+    "Japanese sentence made from the three words exactly as the players typed them."
 )
 
 
@@ -63,10 +86,33 @@ SYSTEM = (
 class Translation:
     words_en: dict[str, str]
     sentence: str
+    # プレイヤーに見せる日本語の文。助詞を機械的に貼ると
+    # 「バナナでを切腹する」のように壊れるので、LLM に組み立てさせる。
+    sentence_ja: str
     ok: bool                       # 3スロットすべて訳せたか
     failed_slots: set[str] = field(default_factory=set)
     raw: str = ""
     seconds: float = 0.0
+
+
+# 入力に無いのに英文へ紛れ込みやすい語。実測(2026-10-18)で、
+# 「侍 / 腸をだしながら / 笑う」に対して LLM が繰り返し "a child's intestines" を出した。
+# 指示で禁じても止まらなかったため、コード側で検査する。
+UNINVITED_PEOPLE = ("child", "kid", "baby", "infant", "toddler", "girl", "boy")
+# 上の語が入力側にあれば、英文に出てきても問題ない
+JA_PEOPLE_HINTS = ("子", "赤ちゃん", "少年", "少女", "幼", "ベビー", "キッズ")
+
+
+def has_uninvited_person(sentence: str, words_ja: dict[str, str]) -> str | None:
+    """入力に無い人物(特に子供)が英文に紛れていないか。混入していればその語を返す。"""
+    joined_ja = "".join(words_ja.values())
+    if any(h in joined_ja for h in JA_PEOPLE_HINTS):
+        return None
+    lowered = sentence.lower()
+    for term in UNINVITED_PEOPLE:
+        if re.search(rf"\b{term}'?s?\b", lowered):
+            return term
+    return None
 
 
 def _extract_json(text: str) -> dict | None:
@@ -87,7 +133,7 @@ class Translator:
         # 辞書引きの控え。LLM が壊れた出力を返したときだけ使う。
         self.fallback = fallback or {}
 
-    def _generate(self, user: str, max_new_tokens: int = 220) -> str:
+    def _generate(self, user: str, max_new_tokens: int = 200) -> str:
         messages = [{"role": "system", "content": [{"type": "text", "text": SYSTEM}]},
                     {"role": "user", "content": [{"type": "text", "text": user}]}]
         inputs = self.proc.apply_chat_template(
@@ -107,6 +153,13 @@ class Translator:
                 f"predicate (どうした): {words_ja['predicate']}")
         t0 = time.perf_counter()
         raw = self._generate(user)
+        intruder = has_uninvited_person(raw, words_ja)
+        if intruder:
+            # 1度だけ、名指しで直させる。それでも消えなければ下で落とす。
+            raw = self._generate(
+                user + f"\n\nYour previous answer mentioned a {intruder}, which is not "
+                "one of the three words. Rewrite without it. Any body part belongs to "
+                "the subject.")
         seconds = time.perf_counter() - t0
 
         data = _extract_json(raw) or {}
@@ -131,5 +184,19 @@ class Translator:
         if not sentence or re.search(r"[ぁ-んァ-ヶ一-龥]", sentence):
             sentence = f"{words_en['subject']} {words_en['predicate']} {words_en['object']}"
 
-        return Translation(words_en=words_en, sentence=sentence, ok=not failed,
-                           failed_slots=failed, raw=raw, seconds=round(seconds, 3))
+        # 作り直しても消えなければ、説明を捨てて素の文に落とす。
+        # 絵は地味になるが、入力に無い人物を描くよりはよい。
+        if has_uninvited_person(sentence, words_ja):
+            sentence = (f"{words_en['subject']} {words_en['predicate']} "
+                        f"{words_en['object']}")
+
+        sentence_ja = str(data.get("sentence_ja", "")).strip()
+        if not sentence_ja:
+            # 最後の手段。助詞がすでに付いている語には を を足さない。
+            obj = words_ja["object"]
+            particle = "" if obj and obj[-1] in "でにへとやからまでをもはがより" else "を"
+            sentence_ja = f"{words_ja['subject']}が{obj}{particle}{words_ja['predicate']}"
+
+        return Translation(words_en=words_en, sentence=sentence, sentence_ja=sentence_ja,
+                           ok=not failed, failed_slots=failed, raw=raw,
+                           seconds=round(seconds, 3))

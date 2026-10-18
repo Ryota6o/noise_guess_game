@@ -206,6 +206,7 @@ class Server:
             "type": "turn_result", "turn": turn.index,
             "assignments": {pid: turn.slot_of(pid) for pid in room.players},
             "words": assets.words_ja, "prompt_en": assets.prompt_en,
+            "sentence_ja": assets.sentence_ja,
             "winner": turn.winner, "outcome": turn.outcome.value,
             "points": game.current_round.points(),
             "server_now": self.now(), "seconds": t.result_seconds})

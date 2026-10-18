@@ -347,8 +347,12 @@ ws.onmessage = (ev) => {
       const w = m.words;
       $("resultTitle").textContent = m.winner ? `${m.winner} が正解!` : "正解者なし";
       $("resultTitle").className = "big " + (m.winner === name ? "ok" : "");
+      // 助詞はサーバー側(LLM)が組み立てる。ここで「を」を貼ると
+      // 「バナナでを切腹する」のように壊れる
+      const sentence = m.sentence_ja ||
+        `${w.subject} ${w.object} ${w.predicate}`;
       $("resultWords").innerHTML =
-        `<div class="big">${w.subject}が ${w.object}を ${w.predicate}</div>` +
+        `<div class="big">${sentence}</div>` +
         `<div class="muted">${m.prompt_en}</div>`;
       renderTelop($("telopResult"), w);
       $("resultPoints").textContent =

@@ -50,6 +50,9 @@ class TurnAssets:
     frames_jpeg_b64: list[str]
     frame_times: tuple[float, ...]
     choices: dict[str, list[dict]]           # slot -> 4択(表示順はここで固定)
+    # プレイヤーに見せる日本語の文。「バナナで」のように助詞が付いた語が来ても
+    # 壊れないよう、機械的に「を」を足さずLLMに組み立てさせる。
+    sentence_ja: str = ""
     substituted: dict[str, str] = field(default_factory=dict)  # slot -> 元の語
     timings: dict[str, float] = field(default_factory=dict)
     precheck: dict[str, dict] = field(default_factory=dict)
@@ -274,6 +277,7 @@ class TurnPreparer:
             if self.use_vlm:
                 tr = self.translator.translate(words_ja)
                 words_en, prompt = tr.words_en, tr.sentence
+                sentence_ja = tr.sentence_ja
                 untranslated = set(tr.failed_slots)
                 timings["translate"] = tr.seconds
             else:
@@ -282,6 +286,7 @@ class TurnPreparer:
                 words_en = {s: en for s, (en, _) in pairs.items()}
                 untranslated = {s for s, (_, ok) in pairs.items() if not ok}
                 prompt = self.build_prompt(words_en)
+                sentence_ja = "".join(words_ja[s] for s in SLOTS)
 
             t0 = time.perf_counter()
             image = self.generate(prompt, seed + attempt)
@@ -312,6 +317,7 @@ class TurnPreparer:
                 timings["total"] = round(time.perf_counter() - t_start, 3)
                 return TurnAssets(
                     words_ja=words_ja, words_en=words_en, prompt_en=prompt,
+                    sentence_ja=sentence_ja,
                     frames_jpeg_b64=frames,
                     frame_times=self.config.timing.frame_times_seconds,
                     choices=choices, substituted=substituted, timings=timings,
