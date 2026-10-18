@@ -18,7 +18,11 @@ class Timing:
 
     input_seconds: float = 30.0              # 【確定 2026-10-16】全員が入力したら即終了
     #   当初は10秒。「何を出題するか」を考えるのに足りないため30秒にした。
-    prepare_budget_seconds: float = 5.0      # 【現行案】生成 + 事前チェック
+    # 【現行案 2026-10-18に5秒から変更】翻訳 + 生成 + 事前チェック。
+    #   当初の5秒は実装前の見積もりだった。実測は中央値5.24秒・最大7.33秒で、
+    #   超過分はほぼ翻訳(形を揃えたダミーの生成を含む)。削れるのは品質だけなので、
+    #   数字を実態に合わせた。
+    prepare_budget_seconds: float = 8.0
     answer_seconds: float = 10.0             # 【確定】
     result_seconds: float = 5.0              # 【現行案】
     hint_at_seconds: float = 5.5             # 【確定(タイミング)】
